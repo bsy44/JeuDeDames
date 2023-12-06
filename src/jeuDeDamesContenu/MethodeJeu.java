@@ -18,4 +18,12 @@ public class MethodeJeu {
         pseudo =scanner.nextLine();
         return pseudo;
     }
+    public static void afficherTab (String [][] tab){
+        for (int i = 0; i < tab.length; i++) {
+            System.out.println();
+            for (int j = 0; j < tab[i].length; j++) {
+                System.out.print(tab[i][j]);
+            }
+        }
+    }
 }
