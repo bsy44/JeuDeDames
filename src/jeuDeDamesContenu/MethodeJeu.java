@@ -1,5 +1,7 @@
 package jeuDeDamesContenu;
 
+import java.util.Scanner;
+
 public class MethodeJeu {
 
     public static int premierJoueur (){
@@ -9,5 +11,11 @@ public class MethodeJeu {
         if (r<0.5)
             premierJ=1;
         return premierJ;
+    }
+    public static String creationJ (){
+        Scanner scanner = new Scanner(System.in);
+        String pseudo;
+        pseudo =scanner.nextLine();
+        return pseudo;
     }
 }
