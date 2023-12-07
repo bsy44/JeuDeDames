@@ -29,6 +29,7 @@ public class MenuJeu {
                 break;
 
             case 2 :
+                DerouleJeu.debutPartie();
                 break;
 
             case 3 :

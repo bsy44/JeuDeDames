@@ -2,7 +2,7 @@ package jeuDeDamesContenu;
 
 public class DerouleJeu {
 
-    public static void gameLoop(){
+    public static void debutPartie(){
         String j1, j2;
 
         System.out.println("Joueur 1" + " : Entrez votre pseudo");
@@ -21,8 +21,10 @@ public class DerouleJeu {
 
         System.out.println("La partie peut commencer");
 
-        /*while (){
+        gameLoop();
+    }
 
-        }*/
+    public static void gameLoop(){
+
     }
 }
