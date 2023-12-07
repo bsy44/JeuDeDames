@@ -15,12 +15,14 @@ public class MethodeJeu {
             premierJ=1;
         return premierJ;
     }
+
     public static String creationJ (){
         Scanner scanner = new Scanner(System.in);
         String pseudo;
-        pseudo =scanner.nextLine();
+        pseudo = scanner.nextLine();
         return pseudo;
     }
+
     public static void afficherTab (String [][] tab){
         String c ="ABCDEFGHIJ";
         for (int i = 0; i < tab.length+1; i++) {
@@ -34,6 +36,7 @@ public class MethodeJeu {
             }
         }
     }
+
     public static String[][] TableauJeuDame (){
             String[][] damier = new String[10][10];
 
