@@ -3,15 +3,13 @@ package jeuDeDamesContenu;
 import java.util.Scanner;
 
 public class MethodeJeu {
-    public static void main(String[] args) {
-        afficherTab(TableauJeuDame());
-    }
 
     public static int premierJoueur (){
-        int premierJ = 2,r;
-        r=(int) Math.random();
+        int premierJ = 2;
+        double aleatoire;
+        aleatoire = (int) Math.random();
 
-        if (r<0.5)
+        if (aleatoire < 0.5)
             premierJ=1;
         return premierJ;
     }
@@ -19,12 +17,12 @@ public class MethodeJeu {
     public static String creationJ (){
         Scanner scanner = new Scanner(System.in);
         String pseudo;
-        pseudo = scanner.nextLine();
-        return pseudo;
+
+        return pseudo = scanner.nextLine();
     }
 
     public static void afficherTab (String [][] tab){
-        String c ="ABCDEFGHIJ";
+        String c = "ABCDEFGHIJ";
         for (int i = 0; i < tab.length+1; i++) {
             System.out.print(i + "\t");
         }
