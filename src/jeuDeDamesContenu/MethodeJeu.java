@@ -6,8 +6,7 @@ public class MethodeJeu {
 
     public static int premierJoueur (){
         int premierJ = 2;
-        double aleatoire;
-        aleatoire = (int) Math.random();
+        double aleatoire = (int) Math.random();
 
         if (aleatoire < 0.5)
             premierJ=1;
@@ -24,10 +23,13 @@ public class MethodeJeu {
     public static void afficherTab (String [][] tab){
         String c = "ABCDEFGHIJ";
         System.out.print("\t"+"\t");
+
         for (int i = 0; i < tab.length+1; i++) {
             System.out.print(i + "\t");
         }
+
         System.out.println();
+
         for (int i = 0; i < tab.length; i++) {
             System.out.println();
             System.out.print(c.charAt(i) + "\t" + "\t");
@@ -38,7 +40,7 @@ public class MethodeJeu {
     }
 
     public static String[][] TableauJeuDame (){
-            String[][] damier = new String[10][10];
+        String[][] damier = new String[10][10];
 
         for (int i = 0; i < damier.length; i++) {
             for (int j = 0; j < damier[i].length; j++) {
@@ -49,18 +51,20 @@ public class MethodeJeu {
                 }
             }
         }
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0)
                     damier[i][j] = "⛀";
             }
         }
+
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0)
                     damier[i][j] = "⛂";
             }
-        }return damier;
+        }
+        return damier;
     }
-
 }
