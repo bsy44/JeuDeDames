@@ -47,9 +47,9 @@ public class MenuJeu {
         pionSelectionner = scanner.nextInt();
 
 
-        System.out.println("1. Avancer à droite");
-        System.out.println("2. Avancer à gauche");
-        menu=scanner.nextInt();
+        System.out.println("1. Avancer votre pion à droite");
+        System.out.println("2. Avancer votre pion à gauche");
+        menu = scanner.nextInt();
 
         switch (menu){
             case 1 :
