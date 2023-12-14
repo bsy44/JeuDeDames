@@ -63,8 +63,9 @@ public class MethodeJeu {
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < damier.length; j++) {
-                if ((i + j) % 2 != 0)
+                if ((i + j) % 2 != 0) {
                     damier[i][j] = "⛀";
+                }
             }
         }
 
@@ -89,16 +90,5 @@ public class MethodeJeu {
             }
         }
         return true;
-    }
-
-    public static void deplacementPion(String[][] tab){
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab[i].length; j++) {
-                if (espaceDisponible(tab)){
-                    tab[i] = tab[i+1];
-                    tab[j] = tab[j+1];
-                }
-            }
-        }
     }
 }
