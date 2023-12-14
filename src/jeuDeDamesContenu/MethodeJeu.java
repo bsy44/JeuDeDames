@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class MethodeJeu {
 
-    final static List<String> listePionBlanc = new ArrayList<>(20);
-    final static List<String> listePionNoir = new ArrayList<>(20);
+    final static List<Pion> listePionBlanc = new ArrayList<>(20);
+    final static List<Pion> listePionNoir = new ArrayList<>(20);
 
     public static void main(String[] args) {
         afficherTab(TableauJeuDame());
@@ -48,6 +48,14 @@ public class MethodeJeu {
         }
     }
 
+    public static void ajouterPionB(Pion pion){
+        listePionBlanc.add(pion);
+    }
+
+    public static void ajouterPionN(Pion pion){
+        listePionNoir.add(pion);
+    }
+
     public static String[][] TableauJeuDame (){
         String[][] damier = new String[10][10];
 
@@ -61,18 +69,38 @@ public class MethodeJeu {
             }
         }
 
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < damier.length; j++) {
+//                if ((i + j) % 2 != 0) {
+//                    damier[i][j] = "⛀";
+//                }
+//            }
+//        }
+//
+//        for (int i = 9; i > 5; i--) {
+//            for (int j = 0; j < damier.length; j++) {
+//                if ((i + j) % 2 != 0)
+//                    damier[i][j] = "⛂";
+//            }
+//        }
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0) {
-                    damier[i][j] = "⛀";
+                    Pion pionBlanc = new Pion(i, j, "⛀");
+                    ajouterPionB(pionBlanc);
+                    damier[i][j] = pionBlanc.toString();
                 }
             }
         }
 
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < damier.length; j++) {
-                if ((i + j) % 2 != 0)
-                    damier[i][j] = "⛂";
+                if ((i + j) % 2 != 0){
+                    Pion pionNoir = new Pion(i, j, "⛂");
+                    ajouterPionN(pionNoir);
+                    damier[i][j] = pionNoir.toString();
+                }
             }
         }
         return damier;
