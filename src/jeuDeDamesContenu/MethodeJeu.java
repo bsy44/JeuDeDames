@@ -10,7 +10,9 @@ public class MethodeJeu {
     final static List<Pion> listePionNoir = new ArrayList<>(20);
 
     public static void main(String[] args) {
-        afficherTab(TableauJeuDame());
+        afficherTab(tableauJeuDame());
+        deplacementHautDroite(tableauJeuDame(),listePionNoir.get(19));
+        afficherTab(tableauJeuDame());
     }
 
     public static int premierJoueur (){
@@ -56,7 +58,7 @@ public class MethodeJeu {
         listePionNoir.add(pion);
     }
 
-    public static String[][] TableauJeuDame (){
+    public static String[][] tableauJeuDame(){
         String[][] damier = new String[10][10];
 
         for (int i = 0; i < damier.length; i++) {
@@ -68,21 +70,6 @@ public class MethodeJeu {
                 }
             }
         }
-
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < damier.length; j++) {
-//                if ((i + j) % 2 != 0) {
-//                    damier[i][j] = "⛀";
-//                }
-//            }
-//        }
-//
-//        for (int i = 9; i > 5; i--) {
-//            for (int j = 0; j < damier.length; j++) {
-//                if ((i + j) % 2 != 0)
-//                    damier[i][j] = "⛂";
-//            }
-//        }
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < damier.length; j++) {
@@ -106,17 +93,17 @@ public class MethodeJeu {
         return damier;
     }
 
-    public static boolean espaceDisponible(String[][] tab){
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab[i].length; j++) {
-                if (i < 0 || j < 0 || i > 9 || j > 9){
-                    return false;
-                }
-                if (tab[i][j].equals("⛂") || tab[i][j].equals("⛀")){
-                    return false;
-                }
-            }
+    public static void deplacementHautDroite(String[][] tab, Pion pion) {
+
+        if (pion.getX()-1 >= 0 && pion.getY()+1 < tab.length) {
+
+            pion.setX(pion.getX() + 1);
+            pion.setY(pion.getY() + 1);
+
+            tab[pion.getX()][pion.getY()] = pion.toString();
         }
-        return true;
+        else {
+            System.out.println("Déplacement impossible");
+        }
     }
 }

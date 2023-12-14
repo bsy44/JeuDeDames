@@ -11,7 +11,7 @@ public class Pion {
         this.x = x;
         this.y = y;
         this.couleurPion = couleurPion;
-        this.idPion = "P"+compteur;
+        this.idPion = "#"+compteur;
         compteur++;
     }
 
@@ -37,6 +37,6 @@ public class Pion {
 
     @Override
     public String toString() {
-        return couleurPion;
+        return couleurPion+idPion;
     }
 }
