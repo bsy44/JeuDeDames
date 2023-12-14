@@ -1,8 +1,17 @@
 package jeuDeDamesContenu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MethodeJeu {
+
+    final static List<String> listePionBlanc = new ArrayList<>(20);
+    final static List<String> listePionNoir = new ArrayList<>(20);
+
+    public static void main(String[] args) {
+        afficherTab(TableauJeuDame());
+    }
 
     public static int premierJoueur (){
         int premierJ = 2;
@@ -66,5 +75,30 @@ public class MethodeJeu {
             }
         }
         return damier;
+    }
+
+    public static boolean espaceDisponible(String[][] tab){
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                if (i < 0 || j < 0 || i > 9 || j > 9){
+                    return false;
+                }
+                if (tab[i][j].equals("⛂") || tab[i][j].equals("⛀")){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void deplacementPion(String[][] tab){
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                if (espaceDisponible(tab)){
+                    tab[i] = tab[i+1];
+                    tab[j] = tab[j+1];
+                }
+            }
+        }
     }
 }
