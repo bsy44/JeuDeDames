@@ -41,10 +41,8 @@ public class MenuJeu {
     public static void menuDeplacement(){
         Scanner scanner = new Scanner(System.in);
 
-        int pionSelectionner;
+
         int menu;
-        System.out.println("Quel pion souhaitez-vous sélectionner ? : ");
-        pionSelectionner = scanner.nextInt();
 
 
         System.out.println("1. Avancer votre pion à droite");

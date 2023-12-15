@@ -6,11 +6,13 @@ import java.util.Scanner;
 
 public class MethodeJeu {
 
-    final static List<String> listePionBlanc = new ArrayList<>(20);
-    final static List<String> listePionNoir = new ArrayList<>(20);
+    final static List<Pion> listePionBlanc = new ArrayList<>(20);
+    final static List<Pion> listePionNoir = new ArrayList<>(20);
 
     public static void main(String[] args) {
-        afficherTab(TableauJeuDame());
+        afficherTab(tableauJeuDame());
+        deplacementHautDroite(tableauJeuDame(),listePionNoir.get(19));
+        afficherTab(tableauJeuDame());
     }
 
     public static int premierJoueur (){
@@ -48,7 +50,15 @@ public class MethodeJeu {
         }
     }
 
-    public static String[][] TableauJeuDame (){
+    public static void ajouterPionB(Pion pion){
+        listePionBlanc.add(pion);
+    }
+
+    public static void ajouterPionN(Pion pion){
+        listePionNoir.add(pion);
+    }
+
+    public static String[][] tableauJeuDame(){
         String[][] damier = new String[10][10];
 
         for (int i = 0; i < damier.length; i++) {
@@ -64,54 +74,36 @@ public class MethodeJeu {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0) {
-                    damier[i][j] = "⛀";
+                    Pion pionBlanc = new Pion(i, j, "⛀");
+                    ajouterPionB(pionBlanc);
+                    damier[i][j] = pionBlanc.toString();
                 }
             }
         }
 
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < damier.length; j++) {
-                if ((i + j) % 2 != 0)
-                    damier[i][j] = "⛂";
+                if ((i + j) % 2 != 0){
+                    Pion pionNoir = new Pion(i, j, "⛂");
+                    ajouterPionN(pionNoir);
+                    damier[i][j] = pionNoir.toString();
+                }
             }
         }
         return damier;
     }
 
-        public boolean deplacerPion (int ligneDepart, int colonneDepart, int ligneArrivee, int colonneArrivee, char joueur, char[][] plateau) {
-            int taille = 10;
-            if (ligneArrivee < 0 || ligneArrivee >= taille || colonneArrivee < 0 || colonneArrivee >= taille) {
-                return false;
-            }
+    public static void deplacementHautDroite(String[][] tab, Pion pion) {
 
-            if (plateau[ligneArrivee][colonneArrivee] != 'N') {
-                return false;
-            }
+        if (pion.getX()-1 >= 0 && pion.getY()+1 < tab.length) {
 
-            if (Math.abs(ligneArrivee - ligneDepart) == 1 && Math.abs(colonneArrivee - colonneDepart) == 1) {
+            pion.setX(pion.getX() + 1);
+            pion.setY(pion.getY() + 1);
 
-                plateau[ligneArrivee][colonneArrivee] = plateau[ligneDepart][colonneDepart];
-                plateau[ligneDepart][colonneDepart] = 'N';
-                return true;
-            }
-
-            if (Math.abs(ligneArrivee - ligneDepart) == 2 && Math.abs(colonneArrivee - colonneDepart) == 2) {
-
-                int lignePionAdverse = (ligneArrivee + ligneDepart) / 2;
-                int colonnePionAdverse = (colonneArrivee + colonneDepart) / 2;
-
-                if (plateau[lignePionAdverse][colonnePionAdverse] != 'N' &&
-                        plateau[lignePionAdverse][colonnePionAdverse] != joueur /*pion du joueur*/) {
-
-                    plateau[ligneArrivee][colonneArrivee] = plateau[ligneDepart][colonneDepart];
-                    plateau[ligneDepart][colonneDepart] = 'N';
-                    plateau[lignePionAdverse][colonnePionAdverse] = 'N';
-
-                    return true;
-                }
-            }
-
-            return false;
+            tab[pion.getX()][pion.getY()] = pion.toString();
         }
-
+        else {
+            System.out.println("Déplacement impossible");
+        }
+    }
 }
