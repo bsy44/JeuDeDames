@@ -78,17 +78,40 @@ public class MethodeJeu {
         return damier;
     }
 
-    public static boolean espaceDisponible(String[][] tab){
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab[i].length; j++) {
-                if (i < 0 || j < 0 || i > 9 || j > 9){
-                    return false;
-                }
-                if (tab[i][j].equals("⛂") || tab[i][j].equals("⛀")){
-                    return false;
+        public boolean deplacerPion (int ligneDepart, int colonneDepart, int ligneArrivee, int colonneArrivee, char joueur, char[][] plateau) {
+            int taille = 10;
+            if (ligneArrivee < 0 || ligneArrivee >= taille || colonneArrivee < 0 || colonneArrivee >= taille) {
+                return false;
+            }
+
+            if (plateau[ligneArrivee][colonneArrivee] != 'N') {
+                return false;
+            }
+
+            if (Math.abs(ligneArrivee - ligneDepart) == 1 && Math.abs(colonneArrivee - colonneDepart) == 1) {
+
+                plateau[ligneArrivee][colonneArrivee] = plateau[ligneDepart][colonneDepart];
+                plateau[ligneDepart][colonneDepart] = 'N';
+                return true;
+            }
+
+            if (Math.abs(ligneArrivee - ligneDepart) == 2 && Math.abs(colonneArrivee - colonneDepart) == 2) {
+
+                int lignePionAdverse = (ligneArrivee + ligneDepart) / 2;
+                int colonnePionAdverse = (colonneArrivee + colonneDepart) / 2;
+
+                if (plateau[lignePionAdverse][colonnePionAdverse] != 'N' &&
+                        plateau[lignePionAdverse][colonnePionAdverse] != joueur /*pion du joueur*/) {
+
+                    plateau[ligneArrivee][colonneArrivee] = plateau[ligneDepart][colonneDepart];
+                    plateau[ligneDepart][colonneDepart] = 'N';
+                    plateau[lignePionAdverse][colonnePionAdverse] = 'N';
+
+                    return true;
                 }
             }
+
+            return false;
         }
-        return true;
-    }
+
 }
