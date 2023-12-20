@@ -57,6 +57,15 @@ public class MethodeJeu {
         listePionNoir.add(pion);
     }
 
+    public static void supprimerPionB(Pion  pion){
+
+        listePionBlanc.remove(pion);
+    }
+    public static void supprimerPionN(Pion  pion){
+        listePionNoir.remove(pion);
+    }
+
+
     public static String[][] tableauJeuDame(){
         String[][] damier = new String[10][10];
 
@@ -73,7 +82,7 @@ public class MethodeJeu {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0) {
-                    Pion pionBlanc = new Pion(i, j, "⛀");
+                    Pion pionBlanc = new Pion(i, j, 1);
                     ajouterPionB(pionBlanc);
                     damier[i][j] = pionBlanc.toString();
                 }
@@ -83,7 +92,7 @@ public class MethodeJeu {
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0){
-                    Pion pionNoir = new Pion(i, j, "⛂");
+                    Pion pionNoir = new Pion(i, j, 2);
                     ajouterPionN(pionNoir);
                     damier[i][j] = pionNoir.toString();
                 }
@@ -109,22 +118,56 @@ public class MethodeJeu {
         return (x>=0 && x<=9 && y<=9 && y>=0);
     }
 
-    public static boolean deplacerPion(Pion pion, int ligneArrivee, int colonneArrivee, String[][] plateau) {
+    public static boolean deplacerPion(Pion pion, int ligneArrivee, int colonneArrivee, int [][] plateau) {
         int taille = 10;
 
         if (ligneArrivee < 0 || ligneArrivee >= taille || colonneArrivee < 0 || colonneArrivee >= taille) {
             return false;
         }
 
-        if (plateau[ligneArrivee][colonneArrivee] != "N") {
+        if (plateau[ligneArrivee][colonneArrivee] != 0) {
             return false;
         }
         if (Math.abs(ligneArrivee - pion.getX()) == 1 && Math.abs(colonneArrivee - pion.getY()) == 1) {
             plateau[ligneArrivee][colonneArrivee] = plateau[pion.getX()][pion.getY()];
-            plateau[pion.getX()][pion.getY()] = "N";
+            plateau[pion.getX()][pion.getY()] = 0;
             return true;
         }
             return false;
     }
+
+
+        public static boolean mangerPion(Pion pion, int ligneArrivee, int colonneArrivee, int[][] plateau) {
+            int taille = 10;
+
+            if (!dansTerrain(ligneArrivee, colonneArrivee)) {
+                return false;
+            }
+
+            if (plateau[ligneArrivee][colonneArrivee] == 1 || plateau[ligneArrivee][colonneArrivee] == pion.getCouleurPion() || plateau[ligneArrivee][colonneArrivee] == 0) {
+                return false;
+            }
+
+            if (ligneArrivee > pion.getX() && pion.getCouleurPion() == 1) {
+                if (dansTerrain(ligneArrivee + 1, colonneArrivee + 1)) {
+                    if (plateau[ligneArrivee + 1][colonneArrivee + 1] == 0) {
+                        Pion pionMange = new Pion(ligneArrivee + 1, colonneArrivee + 1, 3);
+                        plateau[ligneArrivee + 1][colonneArrivee + 1] = plateau[pion.getX()][pion.getY()];
+                        plateau[ligneArrivee][colonneArrivee] = 1;
+                        plateau[pion.getX()][pion.getY()] = 1;
+
+                        for (Pion p : listePionNoir) {
+                            if (p.getX() == ligneArrivee && p.getY() == colonneArrivee) {
+                                supprimerPionN(p);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+
 
 }

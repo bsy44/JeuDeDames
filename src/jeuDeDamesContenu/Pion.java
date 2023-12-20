@@ -3,15 +3,15 @@ package jeuDeDamesContenu;
 public class Pion {
     private int x;
     private int y;
-    private String couleurPion;
+    private int couleurPion;
     private String idPion;
     public static int compteur = 0;
 
-    public Pion(int x, int y, String couleurPion){
+    public Pion(int x, int y, int couleurPion) {
         this.x = x;
         this.y = y;
         this.couleurPion = couleurPion;
-        this.idPion = "#"+compteur;
+        this.idPion = "#" + compteur;
         compteur++;
     }
 
@@ -23,7 +23,7 @@ public class Pion {
         return this.y;
     }
 
-    public String getCouleurPion() {
+    public int getCouleurPion() {
         return couleurPion;
     }
 
@@ -38,9 +38,5 @@ public class Pion {
     public String getIdPion() {
         return idPion;
     }
-
-    @Override
-    public String toString() {
-        return couleurPion;
-    }
 }
+
