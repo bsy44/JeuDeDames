@@ -34,7 +34,7 @@ public class MethodeJeu {
         String c = "ABCDEFGHIJ";
         System.out.print("\t"+"\t");
 
-        for (int i = 0; i < tab.length+1; i++) {
+        for (int i = 1; i < tab.length+1; i++) {
             System.out.print(i + "\t");
         }
 
@@ -70,7 +70,7 @@ public class MethodeJeu {
             }
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0) {
                     Pion pionBlanc = new Pion(i, j, "⛀");

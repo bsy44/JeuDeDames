@@ -41,6 +41,6 @@ public class Pion {
 
     @Override
     public String toString() {
-        return couleurPion+idPion;
+        return couleurPion;
     }
 }
