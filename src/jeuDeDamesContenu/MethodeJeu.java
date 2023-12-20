@@ -11,7 +11,6 @@ public class MethodeJeu {
 
     public static void main(String[] args) {
 
-
     }
 
     public static int premierJoueur (){
@@ -30,66 +29,12 @@ public class MethodeJeu {
         return pseudo = scanner.nextLine();
     }
 
-    public static void afficherTab (String [][] tab){
-        String c = "ABCDEFGHIJ";
-        System.out.print("\t"+"\t");
-
-        for (int i = 1; i < tab.length+1; i++) {
-            System.out.print(i + "\t");
-        }
-
-        System.out.println();
-
-        for (int i = 0; i < tab.length; i++) {
-            System.out.println();
-            System.out.print(c.charAt(i) + "\t" + "\t");
-            for (int j = 0; j < tab[i].length; j++) {
-                System.out.print(tab[i][j] + "\t");
-            }
-        }
-    }
-
     public static void ajouterPionB(Pion pion){
         listePionBlanc.add(pion);
     }
 
     public static void ajouterPionN(Pion pion){
         listePionNoir.add(pion);
-    }
-
-    public static String[][] tableauJeuDame(){
-        String[][] damier = new String[10][10];
-
-        for (int i = 0; i < damier.length; i++) {
-            for (int j = 0; j < damier[i].length; j++) {
-                if ((i + j) % 2 == 0) {
-                    damier[i][j] = "B";
-                } else {
-                    damier[i][j] = "N";
-                }
-            }
-        }
-
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < damier.length; j++) {
-                if ((i + j) % 2 != 0) {
-                    Pion pionBlanc = new Pion(i, j, "⛀");
-                    ajouterPionB(pionBlanc);
-                    damier[i][j] = pionBlanc.toString();
-                }
-            }
-        }
-
-        for (int i = 9; i > 5; i--) {
-            for (int j = 0; j < damier.length; j++) {
-                if ((i + j) % 2 != 0){
-                    Pion pionNoir = new Pion(i, j, "⛂");
-                    ajouterPionN(pionNoir);
-                    damier[i][j] = pionNoir.toString();
-                }
-            }
-        }
-        return damier;
     }
 
 //    public static void deplacementHautDroite(String[][] tab, Pion pion) {
@@ -105,8 +50,9 @@ public class MethodeJeu {
 //            System.out.println("Déplacement impossible");
 //        }
 //    }
+
     public static boolean dansTerrain (int x, int y){
-        return (x>=0 && x<=9 && y<=9 && y>=0);
+        return (x >= 0 && x <= 9 && y <= 9 && y >= 0);
     }
 
     public static boolean deplacerPion(Pion pion, int ligneArrivee, int colonneArrivee, String[][] plateau) {
