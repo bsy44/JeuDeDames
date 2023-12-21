@@ -3,10 +3,11 @@ package jeuDeDamesContenu;
 public class Plateau {
 
     public static void main(String[] args) {
-        afficherTab(tableauJeuDame(plateauPion()));
+        MethodeJeu.afficherTab(tableauJeuDame(plateauPion()));
+        afficherTab(plateauPion());
     }
 
-    public static void afficherTab (String[][] tab){
+    public static void afficherTab (int[][] tab){
         String c = "ABCDEFGHIJ";
         System.out.print("\t"+"\t");
 
