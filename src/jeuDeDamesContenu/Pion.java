@@ -7,11 +7,11 @@ public class Pion {
     private String idPion;
     public static int compteur = 0;
 
-    public Pion(int x, int y, int couleurPion){
+    public Pion(int x, int y, int couleurPion) {
         this.x = x;
         this.y = y;
         this.couleurPion = couleurPion;
-        this.idPion = "#"+compteur;
+        this.idPion = "#" + compteur;
         compteur++;
     }
 
@@ -23,6 +23,10 @@ public class Pion {
         return this.y;
     }
 
+    public int getCouleurPion() {
+        return couleurPion;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -31,11 +35,10 @@ public class Pion {
         this.y = y;
     }
 
-    public String getIdPion() {
-        return idPion;
-    }
+//    public String getIdPion() {
+//        return idPion;
+//    }
 
-    public int getCouleurPion() {
-        return couleurPion;
-    }
+
 }
+
