@@ -10,6 +10,7 @@ public class MethodeJeu {
     final static List<Pion> listePionNoir = new ArrayList<>(20);
 
     public static void main(String[] args) {
+        afficherTab(Plateau.tableauJeuDame(Plateau.plateauPion()));
 
         int [][] t = new int[10][10];
         t=Plateau.plateauPion();
@@ -21,22 +22,17 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
     }
 
     public static int premierJoueur (){
-        int premierJ = 2;
+        int premierJ = 0;
         double aleatoire = (int) Math.random();
 
-        if (aleatoire < 0.5)
-            premierJ=1;
+        if (aleatoire < 0.5) {
+            premierJ = 1;
+        }
+
         return premierJ;
     }
 
-    public static String creationJ() {
-        Scanner scanner = new Scanner(System.in);
-        String pseudo;
-
-        return pseudo = scanner.nextLine();
-    }
-
-    public static void afficherTab (String [][] tab){
+    public static void afficherTab (String[][] tab){
         String c = "ABCDEFGHIJ";
         System.out.print("\t"+"\t");
 
@@ -155,7 +151,6 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
 
     public static boolean deplacerPion(Pion pion, int ligneArrivee, int colonneArrivee, int [][] plateau) {
         int taille = 10;
-        System.out.println();
 
         if (!dansTerrain(ligneArrivee, colonneArrivee)) {
             System.out.println("ok");
@@ -166,14 +161,8 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
             System.out.println("aaa");
             return false;
         }
-//        System.out.println();
-//        System.out.println(pion.getX()+ "+" +pion.getY());
-//        System.out.println(Math.abs(ligneArrivee - pion.getX()));
-//        System.out.println(Math.abs(colonneArrivee - pion.getY()));
         if (Math.abs(ligneArrivee - pion.getX()) == 1 && Math.abs(colonneArrivee - pion.getY()) == 1) {
-            System.out.println(plateau[pion.getX()][pion.getY()]);
             plateau[ligneArrivee][colonneArrivee] = plateau[pion.getX()][pion.getY()];
-            System.out.println();
             plateau[pion.getX()][pion.getY()] = 1;
             return true;
         }
@@ -183,18 +172,16 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
 
         public static boolean mangerPionN(Pion pion, int ligneArrivee, int colonneArrivee, int[][] plateau) {
             int taille = 10;
-            if (colonneArrivee-pion.getY()!=1)
-                return false;
 
             if (!dansTerrain(ligneArrivee, colonneArrivee)) {
                 return false;
             }
 
-            if (plateau[ligneArrivee][colonneArrivee] != 3) {
+            if (plateau[ligneArrivee][colonneArrivee] == 1 || plateau[ligneArrivee][colonneArrivee] == 3 || plateau[ligneArrivee][colonneArrivee] == 0) {
                 return false;
             }
 
-            if (ligneArrivee - pion.getX()==1) {//manger a droite
+            if (ligneArrivee > pion.getX()) {//manger a droite
                 if (dansTerrain(ligneArrivee + 1, colonneArrivee + 1)) {
                     if (plateau[ligneArrivee + 1][colonneArrivee + 1] == 0) {
                         plateau[ligneArrivee + 1][colonneArrivee + 1] = plateau[pion.getX()][pion.getY()];
@@ -210,7 +197,7 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
                     }
                 }
             }
-            else if (ligneArrivee - pion.getX()==-1){// manger à gauche
+            else {// manger à gauche
                 if (dansTerrain(ligneArrivee - 1, colonneArrivee + 1)) {
                     if (plateau[ligneArrivee - 1][colonneArrivee + 1] == 0) {
                         Pion pionMange = new Pion(ligneArrivee - 1, colonneArrivee + 1, 1);
@@ -233,18 +220,16 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
 
     public static boolean mangerPionB(Pion pion, int ligneArrivee, int colonneArrivee, int[][] plateau) {
         int taille = 10;
-        if (colonneArrivee-pion.getY()!=-1)
-            return false;
 
         if (!dansTerrain(ligneArrivee, colonneArrivee)) {
             return false;
         }
 
-        if (plateau[ligneArrivee][colonneArrivee] != 2) {
+        if (plateau[ligneArrivee][colonneArrivee] == 2 || plateau[ligneArrivee][colonneArrivee] == 2 || plateau[ligneArrivee][colonneArrivee] == 0) {
             return false;
         }
 
-        if (ligneArrivee - pion.getX()== -1) { // manger à gauche
+        if (ligneArrivee < pion.getX()) { // manger à gauche
             if (dansTerrain(ligneArrivee - 1, colonneArrivee - 1)) {
                 if (plateau[ligneArrivee - 1][colonneArrivee - 1] == 0) {
                     plateau[ligneArrivee - 1][colonneArrivee - 1] = plateau[pion.getX()][pion.getY()];
@@ -259,7 +244,7 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
                     return true;
                 }
             }
-        } else if(ligneArrivee - pion.getX()== +1){ // manger à droite
+        } else { // manger à droite
             if (dansTerrain(ligneArrivee + 1, colonneArrivee - 1)) {
                 if (plateau[ligneArrivee + 1][colonneArrivee - 1] == 0) {
                     Pion pionMange = new Pion(ligneArrivee + 1, colonneArrivee - 1, 3);

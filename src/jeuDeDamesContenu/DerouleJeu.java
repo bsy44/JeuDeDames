@@ -1,14 +1,17 @@
 package jeuDeDamesContenu;
 
+import java.util.Scanner;
+
 public class DerouleJeu {
 
     public static void debutPartie(){
+        Scanner scanner = new Scanner(System.in);
         String j1, j2;
 
         System.out.println("Joueur 1 : Entrez votre pseudo");
-        j1 = MethodeJeu.creationJ();
+        j1 = scanner.nextLine();
         System.out.println("Joueur 2 : Entrez votre pseudo");
-        j2 = MethodeJeu.creationJ();
+        j2 = scanner.nextLine();
 
         if (MethodeJeu.premierJoueur() == 1){
             System.out.println(j1 + " Vous jouez les pions blancs");
