@@ -23,10 +23,6 @@ public class Pion {
         return this.y;
     }
 
-    public String getCouleurPion() {
-        return couleurPion;
-    }
-
     public void setX(int x) {
         this.x = x;
     }

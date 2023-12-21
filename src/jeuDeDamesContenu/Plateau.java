@@ -41,7 +41,7 @@ public class Plateau {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < tabPionEntier.length; j++) {
                 if (tabPionEntier[i][j] == 2) {
-                    Pion pionBlanc = new Pion(i, j, "⛀");
+                    Pion pionBlanc = new Pion(i, j, 0);
                     MethodeJeu.ajouterPionB(pionBlanc);
                     damier[i][j] = pionBlanc.toString();
                 }
@@ -51,7 +51,7 @@ public class Plateau {
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < tabPionEntier.length; j++) {
                 if (tabPionEntier[i][j] == 3){
-                    Pion pionNoir = new Pion(i, j, "⛂");
+                    Pion pionNoir = new Pion(i, j, 1);
                     MethodeJeu.ajouterPionN(pionNoir);
                     damier[i][j] = pionNoir.toString();
                 }
