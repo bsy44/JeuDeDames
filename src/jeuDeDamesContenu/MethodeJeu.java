@@ -51,18 +51,32 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
         }
     }
 
-    public static void ajouterPionB(Pion pion){
+    public static void ajouterPionB(Pion pion) {
+        for (Pion pionExistant : listePionBlanc) {
+            if (pionExistant.getIdPion() == pion.getIdPion()) {
+                pionExistant.setX(pion.getX());
+                pionExistant.setY(pion.getY());
+                return;
+            }
+        }
         listePionBlanc.add(pion);
     }
 
-    public static void ajouterPionN(Pion pion){
+    public static void ajouterPionN(Pion pion) {
+        for (Pion existingPion : listePionNoir) {
+            if (existingPion.getIdPion() == pion.getIdPion()) {
+                existingPion.setX(pion.getX());
+                existingPion.setY(pion.getY());
+                return;
+            }
+        }
         listePionNoir.add(pion);
     }
 
     public static void supprimerPionB(Pion  pion){
-
         listePionBlanc.remove(pion);
     }
+
     public static void supprimerPionN(Pion  pion){
         listePionNoir.remove(pion);
     }
@@ -169,9 +183,8 @@ Plateau.afficherTab(Plateau.tableauJeuDame(t));
             return false;
     }
 
-
-        public static boolean mangerPionN(Pion pion, int ligneArrivee, int colonneArrivee, int[][] plateau) {
-            int taille = 10;
+    public static boolean mangerPionN(Pion pion, int ligneArrivee, int colonneArrivee, int[][] plateau) {
+        int taille = 10;
 
             if (!dansTerrain(ligneArrivee, colonneArrivee)) {
                 return false;
