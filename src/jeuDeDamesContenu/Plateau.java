@@ -26,7 +26,7 @@ public class Plateau {
         }
     }
 
-    public static String[][] tableauJeuDame(int[][] tabPionEntier){
+    public static String[][] tableauJeuDame(int[][] tabPionEntier) {
         String[][] damier = new String[10][10];
 
         for (int i = 0; i < tabPionEntier.length; i++) {
@@ -51,7 +51,7 @@ public class Plateau {
 
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < tabPionEntier.length; j++) {
-                if (tabPionEntier[i][j] == 3){
+                if (tabPionEntier[i][j] == 3) {
                     Pion pionNoir = new Pion(i, j, 1);
                     MethodeJeu.ajouterPionN(pionNoir);
                     damier[i][j] = "⛀";
