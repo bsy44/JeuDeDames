@@ -4,27 +4,9 @@ public class Plateau {
 
     public static void main(String[] args) {
         MethodeJeu.afficherTab(tableauJeuDame(plateauPion()));
-        afficherTab(plateauPion());
     }
 
-    public static void afficherTab (int[][] tab){
-        String c = "ABCDEFGHIJ";
-        System.out.print("\t"+"\t");
 
-        for (int i = 1; i < tab.length+1; i++) {
-            System.out.print(i + "\t");
-        }
-
-        System.out.println();
-
-        for (int i = 0; i < tab.length; i++) {
-            System.out.println();
-            System.out.print(c.charAt(i) + "\t" + "\t");
-            for (int j = 0; j < tab[i].length; j++) {
-                System.out.print(tab[i][j] + "\t");
-            }
-        }
-    }
 
     public static String[][] tableauJeuDame(int[][] tabPionEntier) {
         String[][] damier = new String[10][10];
