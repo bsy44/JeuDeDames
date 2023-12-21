@@ -11,40 +11,42 @@ public class MethodeJeu {
     final static List<Pion> listePionNoir = new ArrayList<>(20);
 
     public static void main(String[] args) {
-        afficherTab(Plateau.tableauJeuDame(Plateau.plateauPion()));
+        afficherTab(Plateau.creerDamier(Plateau.plateauPion()));
         int [][] t = new int[10][10];
-        t=Plateau.plateauPion();
+        t = Plateau.plateauPion();
         Plateau.afficherTab(t);
 
+
+
         System.out.println(deplacerPion(listePionBlanc.get(16),4,3,t));
-        afficherTab(rafraichissementTableau(t,Plateau.tableauJeuDame(t)));
+        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
 
         System.out.println();
 
         System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
         System.out.println(deplacerPion(listePionNoir.get(16),5,2,t));
-        afficherTab(rafraichissementTableau(t,Plateau.tableauJeuDame(t)));
+        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
         System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
         System.out.println();
 
         System.out.println(deplacerPion(listePionNoir.get(16),4,1,t));
-        afficherTab(rafraichissementTableau(t,Plateau.tableauJeuDame(t)));
+        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
         System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
 
         System.out.println();
 
         System.out.println(mangerPionN(listePionBlanc.get(15),4,1, t));
-        afficherTab(rafraichissementTableau(t,Plateau.tableauJeuDame(t)));
-        System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
+        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
+        System.out.println(listePionBlanc.get(16).getX()+", "+ listePionBlanc.get(16).getY());
 
         System.out.println();
 
         System.out.println(mangerPionN(listePionBlanc.get(15), 6,1,t));
-        afficherTab(rafraichissementTableau(t,Plateau.tableauJeuDame(t)));
+        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
         System.out.println(listePionBlanc.get(15).getX()+", "+ listePionBlanc.get(15).getY());
 
         System.out.println(deplacerPion(listePionBlanc.get(15),6,3,t));
-        afficherTab(rafraichissementTableau(t,Plateau.tableauJeuDame(t)));
+        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
     }
 
     public static int premierJoueur (){
@@ -142,6 +144,48 @@ public class MethodeJeu {
 
     public static boolean dansTerrain (int x, int y){
         return (x >= 0 && x <= 9 && y <= 9 && y >= 0);
+    }
+
+    public static Pion pionBlancSelectionner(int[][] tab){
+        Scanner scanner = new Scanner(System.in);
+        int saisieX;
+        int saisieY;
+
+        System.out.println("Entrer le chiffre de la case du pion que vous voulez déplacer");
+        saisieX = scanner.nextInt();
+        saisieY = selectionPionY();
+
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                if ((saisieX == tab[i][j] && tab[i][j] == 2) && (saisieY == tab[i][j] && tab[i][j] == 2)){
+                    Pion p = new Pion(saisieX,saisieY,0);
+                    return p;
+                }
+
+            }
+        }
+        return null;
+    }
+
+    public static Pion pionNoirSelectionner(int[][] tab){
+        Scanner scanner = new Scanner(System.in);
+        int saisieX;
+        int saisieY;
+
+        System.out.println("Entrer le chiffre de la case du pion que vous voulez sélectionner");
+        saisieX = scanner.nextInt();
+        saisieY = selectionPionY();
+
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                if ((saisieX == tab[i][j] && tab[i][j] == 3) && (saisieY == tab[i][j] && tab[i][j] == 3)){
+                    Pion p = new Pion(saisieX,saisieY,1);
+                    return p;
+                }
+
+            }
+        }
+        return null;
     }
 
     public static boolean deplacerPion(Pion pion, int ligneArrivee, int colonneArrivee, int [][] plateau) {
