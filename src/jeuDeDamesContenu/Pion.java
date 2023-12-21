@@ -3,11 +3,11 @@ package jeuDeDamesContenu;
 public class Pion {
     private int x;
     private int y;
-    private String couleurPion;
+    private int couleurPion;
     private String idPion;
     public static int compteur = 0;
 
-    public Pion(int x, int y, String couleurPion){
+    public Pion(int x, int y, int couleurPion){
         this.x = x;
         this.y = y;
         this.couleurPion = couleurPion;
@@ -35,8 +35,7 @@ public class Pion {
         return idPion;
     }
 
-    @Override
-    public String toString() {
+    public int getCouleurPion() {
         return couleurPion;
     }
 }

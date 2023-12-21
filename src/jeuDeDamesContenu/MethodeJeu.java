@@ -87,9 +87,9 @@ public class MethodeJeu {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0) {
-                    Pion pionBlanc = new Pion(i, j, "⛀");
+                    Pion pionBlanc = new Pion(i, j, 0);
                     ajouterPionB(pionBlanc);
-                    damier[i][j] = pionBlanc.toString();
+                    damier[i][j] = "⛂";
                 }
             }
         }
@@ -97,9 +97,9 @@ public class MethodeJeu {
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < damier.length; j++) {
                 if ((i + j) % 2 != 0){
-                    Pion pionNoir = new Pion(i, j, "⛂");
+                    Pion pionNoir = new Pion(i, j, 1);
                     ajouterPionN(pionNoir);
-                    damier[i][j] = pionNoir.toString();
+                    damier[i][j] = "⛀";
                 }
             }
         }
