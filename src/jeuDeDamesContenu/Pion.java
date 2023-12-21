@@ -35,8 +35,10 @@ public class Pion {
         this.y = y;
     }
 
-    public String getIdPion() {
-        return idPion;
-    }
+//    public String getIdPion() {
+//        return idPion;
+//    }
+
+
 }
 
