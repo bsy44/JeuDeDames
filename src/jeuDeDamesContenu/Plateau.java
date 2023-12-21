@@ -43,7 +43,7 @@ public class Plateau {
                 if (tabPionEntier[i][j] == 2) {
                     Pion pionBlanc = new Pion(i, j, 0);
                     MethodeJeu.ajouterPionB(pionBlanc);
-                    damier[i][j] = pionBlanc.toString();
+                    damier[i][j] = "⛂";
                 }
             }
         }
@@ -53,7 +53,7 @@ public class Plateau {
                 if (tabPionEntier[i][j] == 3){
                     Pion pionNoir = new Pion(i, j, 1);
                     MethodeJeu.ajouterPionN(pionNoir);
-                    damier[i][j] = pionNoir.toString();
+                    damier[i][j] = "⛀";
                 }
             }
         }
