@@ -142,8 +142,9 @@ public class MethodeJeu {
 //            System.out.println("Déplacement impossible");
 //        }
 //    }
+
     public static boolean dansTerrain (int x, int y){
-        return (x>=0 && x<=9 && y<=9 && y>=0);
+        return (x >= 0 && x <= 9 && y <= 9 && y >= 0);
     }
 
     public static boolean deplacerPion(Pion pion, int ligneArrivee, int colonneArrivee, int [][] plateau) {
