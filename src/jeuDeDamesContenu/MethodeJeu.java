@@ -11,7 +11,6 @@ public class MethodeJeu {
     final static List<Pion> listePionNoir = new ArrayList<>(20);
 
     public static void main(String[] args) {
-        afficherTab(Plateau.tableauJeuDame(Plateau.plateauPion()));
 
         int [][] t = new int[10][10];
         t=Plateau.plateauPion();
