@@ -10,7 +10,7 @@ public class MethodeJeu {
     final static List<Pion> listePionNoir = new ArrayList<>(20);
 
     public static void main(String[] args) {
-
+        System.out.println(selectionPionY());
     }
 
     public static int premierJoueur (){
@@ -35,6 +35,33 @@ public class MethodeJeu {
 
     public static void ajouterPionN(Pion pion){
         listePionNoir.add(pion);
+    }
+
+    public static int selectionPionX(){
+        Scanner scanner = new Scanner(System.in);
+
+        int saisieX;
+        System.out.println("Entrer le chiffre de la case du pion que vous voulez déplacer");
+        saisieX = scanner.nextInt();
+
+        return saisieX;
+    }
+
+    public static int selectionPionY() {
+        Scanner scanner = new Scanner(System.in);
+        String c = "ABCDEFGHIJ";
+        String saisieY;
+        int i;
+
+        System.out.println("Entrer la lettre de la case du pion que vous voulez déplacer");
+        saisieY = scanner.nextLine();
+
+        for (i = 0; i < c.length(); i++) {
+            if (saisieY.equals(String.valueOf(c.charAt(i)))) {
+                return (i+1); // Retourne l'indice si la lettre est trouvée
+            }
+        }
+        return -1; // Retourne -1 si la lettre n'est pas trouvée
     }
 
 //    public static void deplacementHautDroite(String[][] tab, Pion pion) {
