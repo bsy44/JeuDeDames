@@ -173,14 +173,13 @@ public class MethodeJeu {
                 return false;
             }
 
-            if (plateau[ligneArrivee][colonneArrivee] == 1 || plateau[ligneArrivee][colonneArrivee] == pion.getCouleurPion() || plateau[ligneArrivee][colonneArrivee] == 0) {
+            if (plateau[ligneArrivee][colonneArrivee] == 1 || plateau[ligneArrivee][colonneArrivee] == 3 || plateau[ligneArrivee][colonneArrivee] == 0) {
                 return false;
             }
 
-            if (ligneArrivee > pion.getX() && pion.getCouleurPion() == 1) {//manger a droite
+            if (ligneArrivee > pion.getX()) {//manger a droite
                 if (dansTerrain(ligneArrivee + 1, colonneArrivee + 1)) {
                     if (plateau[ligneArrivee + 1][colonneArrivee + 1] == 0) {
-                        Pion pionMange = new Pion(ligneArrivee + 1, colonneArrivee + 1, 3);
                         plateau[ligneArrivee + 1][colonneArrivee + 1] = plateau[pion.getX()][pion.getY()];
                         plateau[ligneArrivee][colonneArrivee] = 1;
                         plateau[pion.getX()][pion.getY()] = 1;
@@ -197,7 +196,7 @@ public class MethodeJeu {
             else {// manger à gauche
                 if (dansTerrain(ligneArrivee - 1, colonneArrivee + 1)) {
                     if (plateau[ligneArrivee - 1][colonneArrivee + 1] == 0) {
-                        Pion pionMange = new Pion(ligneArrivee - 1, colonneArrivee + 1, 3);
+                        Pion pionMange = new Pion(ligneArrivee - 1, colonneArrivee + 1, 1);
                         plateau[ligneArrivee - 1][colonneArrivee + 1] = plateau[pion.getX()][pion.getY()];
                         plateau[ligneArrivee][colonneArrivee] = 1;
                         plateau[pion.getX()][pion.getY()] = 1;
@@ -222,14 +221,13 @@ public class MethodeJeu {
             return false;
         }
 
-        if (plateau[ligneArrivee][colonneArrivee] == 2 || plateau[ligneArrivee][colonneArrivee] == pion.getCouleurPion() || plateau[ligneArrivee][colonneArrivee] == 0) {
+        if (plateau[ligneArrivee][colonneArrivee] == 2 || plateau[ligneArrivee][colonneArrivee] == 2 || plateau[ligneArrivee][colonneArrivee] == 0) {
             return false;
         }
 
-        if (ligneArrivee < pion.getX() && pion.getCouleurPion() == 2) { // manger à gauche
+        if (ligneArrivee < pion.getX()) { // manger à gauche
             if (dansTerrain(ligneArrivee - 1, colonneArrivee - 1)) {
                 if (plateau[ligneArrivee - 1][colonneArrivee - 1] == 0) {
-                    Pion pionMange = new Pion(ligneArrivee - 1, colonneArrivee - 1, 3);
                     plateau[ligneArrivee - 1][colonneArrivee - 1] = plateau[pion.getX()][pion.getY()];
                     plateau[ligneArrivee][colonneArrivee] = 2;
                     plateau[pion.getX()][pion.getY()] = 2;
