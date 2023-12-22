@@ -27,8 +27,29 @@ public class MethodeJeu {
 //
 //        System.out.println("\n");
 
-        deplacerPionN(pionNoirSelectionner(), true, plateauInt);
+        deplacerPionN(pionNoirSelectionner(), false, plateauInt);
         afficherTab(rafraichissementTableau(plateauInt, damier));
+
+        System.out.println("\n");
+
+        deplacerPionB(pionBlancSelectionner(),true, plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+
+        System.out.println("\n");
+
+        mangerPionN(pionBlancSelectionner(),true,plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+
+        System.out.println("\n");
+
+        mangerPionB(pionNoirSelectionner(),false,plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+
+        System.out.println("\n");
+
+        deplacerPionB(pionBlancSelectionner(),false,plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+
     }
 
     public static int premierJoueur (){
@@ -139,7 +160,6 @@ public class MethodeJeu {
 
         for (Pion p : listePionBlanc) {
             if (saisieX == p.getX() && saisieY == p.getY()) {
-                System.out.println(p.getX() + ", " + p.getY());
                 return p;
             }
         }
@@ -155,10 +175,8 @@ public class MethodeJeu {
         saisieX = scanner.nextInt()-1;
         saisieY = selectionPionY();
 
-        System.out.println(saisieX +", " + saisieY);
         for (Pion p : listePionNoir) {
             if (saisieX == p.getY() && saisieY == p.getX()) {
-                System.out.println(p.getX() + ", " + p.getY());
                 return p;
             }
         }
@@ -216,7 +234,7 @@ public class MethodeJeu {
         int taille = 10;
 
         if(droite){
-            System.out.println("je suis la");
+            System.out.println("je suis a droite");
             if (!dansTerrain(pion.getY()+1, pion.getX()+1)) {
                 System.out.println("ok");
                 return false;
@@ -237,6 +255,7 @@ public class MethodeJeu {
             return true;
         }
         else {
+            System.out.println("je suis a gauche");
             if (!dansTerrain(pion.getY() + 1, pion.getX() - 1)) {
                 System.out.println("ok");
                 return false;
@@ -246,7 +265,9 @@ public class MethodeJeu {
                 System.out.println("aaa");
                 return false;
             }
+
             else {
+                System.out.println("dedans");
                 plateau[pion.getY() + 1][pion.getX() - 1] = plateau[pion.getY()][pion.getX()];
                 plateau[pion.getY()][pion.getX()] = 1;
 
@@ -263,18 +284,26 @@ public class MethodeJeu {
 
         if (droite) {//manger a droite
             if (dansTerrain(pion.getY() + 2, pion.getX() + 2)) {
-                if (plateau[pion.getX()+1][pion.getY()+1] != 3) {
+                System.out.println("je suis la");
+                if (plateau[pion.getY()+1][pion.getX()+1] != 3) {
+                    System.out.println("tata");
                     return false;
-                }
+                }System.out.println(pion.getX() + ","+ pion.getY());
+
                 for (Pion p : listePionNoir) {
-                    if (p.getX() == pion.getX()+1 && p.getY() == pion.getY()+1) {
+                    if (p.getX() == pion.getY()+1 && p.getY() == pion.getX()+1) {
+                        System.out.println("je suis mort");
                         listePionNoir.remove(p);
                         break;
                     }
                 }
-                if (plateau[pion.getY() + 1][pion.getX() + 1] == 1) {
 
-                    plateau[pion.getY() + 2][pion.getX() + 2] = plateau[pion.getY()][pion.getX()];
+                if (plateau[pion.getY() + 2][pion.getX() + 2] == 1) {
+                    System.out.println(plateau[pion.getY() + 2][pion.getX() + 2]);
+                    System.out.println((pion.getY()+2) + ", "+ (pion.getX()+2));
+
+
+                    plateau[pion.getY() + 2][pion.getX() + 2] = plateau[pion.getX()][pion.getY()];
                     plateau[pion.getY()+1][pion.getX()+1] = 1;
                     plateau[pion.getY()][pion.getX()] = 1;
                     System.out.println("manger !");
@@ -315,12 +344,13 @@ public class MethodeJeu {
                 if (plateau[pion.getY()+1][pion.getX()-1] != 3) {
                     return false;
                 }
-                for (Pion p : listePionNoir) {
+                for (Pion p : listePionBlanc) {
                     if (p.getX() == pion.getX()+1 && p.getY() == pion.getY()-1) {
-                        listePionNoir.remove(p);
+                        listePionBlanc.remove(p);
                         break;
                     }
                 }
+
                 if (plateau[pion.getY() + 1][pion.getX() - 1] == 1) {
 
                     plateau[pion.getY() + 2][pion.getX() - 2] = plateau[pion.getY()][pion.getX()];
@@ -333,19 +363,23 @@ public class MethodeJeu {
         }
         else {// manger à gauche
             if (dansTerrain(pion.getX() - 2, pion.getY() - 2)) {
-                if (plateau[pion.getX()-1][pion.getY()-1] != 3) {
+                if (plateau[pion.getX()-1][pion.getY()-1] != 2) {
                     return false;
                 }
-                for (Pion p : listePionNoir) {
+                for (Pion p : listePionBlanc) {
                     if (p.getX() == pion.getX()-1 && p.getY() == pion.getY()-1) {
-                        listePionNoir.remove(p);
+                        listePionBlanc.remove(p);
                         break;
                     }
                 }
-                if (plateau[pion.getY() - 2][pion.getX() - 2] == 1) {
-                    plateau[pion.getY() - 2][pion.getX() - 2] = plateau[pion.getY()][pion.getX()];
-                    plateau[pion.getY()+1][pion.getX()-1] = 1;
-                    plateau[pion.getY()][pion.getX()] = 1;
+
+                System.out.println(plateau[pion.getX()-1][pion.getY()-1]);
+                System.out.println((pion.getX() - 1) + ", "+ (pion.getY()-1));
+
+                if (plateau[pion.getX() - 2][pion.getY() - 2] == 1) {
+                    plateau[pion.getX() - 2][pion.getY() - 2] = plateau[pion.getX()][pion.getY()];
+                    plateau[pion.getX()-1][pion.getY()-1] = 1;
+                    plateau[pion.getX()][pion.getY()] = 1;
                     System.out.println("manger !");
                     return true;
                 }
