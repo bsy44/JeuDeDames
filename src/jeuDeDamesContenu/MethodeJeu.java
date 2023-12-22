@@ -189,7 +189,7 @@ public class MethodeJeu {
         return null;
     }
 
-    public static boolean deplacerPion(Pion pion, int ligneArrivee, int colonneArrivee, int [][] plateau) {
+    public static boolean deplacerPion(Pion pion, boolean droite, int [][] plateau) {
         int taille = 10;
 
         if (droite) {
