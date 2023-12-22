@@ -18,35 +18,36 @@ public class MethodeJeu {
 
 
 
-        System.out.println(deplacerPion(listePionBlanc.get(16),4,3,t));
-        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
 
-        System.out.println();
-
-        System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
-        System.out.println(deplacerPion(listePionNoir.get(16),5,2,t));
-        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
-        System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
-        System.out.println();
-
-        System.out.println(deplacerPion(listePionNoir.get(16),4,1,t));
-        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
-        System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
-
-        System.out.println();
-
-        System.out.println(mangerPionN(listePionBlanc.get(15),4,1, t));
-        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
-        System.out.println(listePionBlanc.get(16).getX()+", "+ listePionBlanc.get(16).getY());
-
-        System.out.println();
-
-        System.out.println(mangerPionN(listePionBlanc.get(15), 6,1,t));
-        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
-        System.out.println(listePionBlanc.get(15).getX()+", "+ listePionBlanc.get(15).getY());
-
-        System.out.println(deplacerPion(listePionBlanc.get(15),6,3,t));
-        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
+//        System.out.println(deplacerPionN());
+//        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
+//
+//        System.out.println();
+//
+//        System.out.println(+", "+ listePionNoir.get(16).getY());
+//        System.out.println(deplacerPion(listePionNoir.get(16),5,2,t));
+//        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
+//        System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
+//        System.out.println();
+//
+//        System.out.println(deplacerPion(listePionNoir.get(16),4,1,t));
+//        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
+//        System.out.println(listePionNoir.get(16).getX()+", "+ listePionNoir.get(16).getY());
+//
+//        System.out.println();
+//
+//        System.out.println(mangerPionN(listePionBlanc.get(15),4,1, t));
+//        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
+//        System.out.println(listePionBlanc.get(16).getX()+", "+ listePionBlanc.get(16).getY());
+//
+//        System.out.println();
+//
+//        System.out.println(mangerPionN(listePionBlanc.get(15), 6,1,t));
+//        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
+//        System.out.println(listePionBlanc.get(15).getX()+", "+ listePionBlanc.get(15).getY());
+//
+//        System.out.println(deplacerPion(listePionBlanc.get(15),6,3,t));
+//        afficherTab(rafraichissementTableau(t,Plateau.creerDamier(t)));
     }
 
     public static int premierJoueur (){

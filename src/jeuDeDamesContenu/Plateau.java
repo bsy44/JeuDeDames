@@ -3,7 +3,6 @@ package jeuDeDamesContenu;
 public class Plateau {
 
     public static void main(String[] args) {
-        MethodeJeu.afficherTab(tableauJeuDame(plateauPion()));
         afficherTab(plateauPion());
     }
 
