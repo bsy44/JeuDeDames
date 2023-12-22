@@ -27,7 +27,11 @@ public class MethodeJeu {
 //
 //        System.out.println("\n");
 
+        deplacerPionN(pionNoirSelectionner(), false, plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
         deplacerPionN(pionNoirSelectionner(), true, plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+        mangerPionN(pionBlancSelectionner(),true,plateauInt);
         afficherTab(rafraichissementTableau(plateauInt, damier));
     }
 
@@ -138,8 +142,9 @@ public class MethodeJeu {
         saisieY = selectionPionY();
 
         for (Pion p : listePionBlanc) {
-            if (saisieX == p.getX() && saisieY == p.getY()) {
-                System.out.println(p.getX() + ", " + p.getY());
+            System.out.println(saisieX + "" + saisieY + "  " +p.getY() + "" + "" + p.getX());
+            if (saisieX == p.getY() && saisieY == p.getX()) {
+                System.out.println(p.getY() + ", " + p.getX());
                 return p;
             }
         }
@@ -216,20 +221,17 @@ public class MethodeJeu {
         int taille = 10;
 
         if(droite){
-            System.out.println("je suis la");
+            System.out.println(pion.getX()+1);
+
             if (!dansTerrain(pion.getY()+1, pion.getX()+1)) {
-                System.out.println("ok");
                 return false;
             }
 
-            if (plateau[pion.getY()+1][pion.getX()+1] != 1) {
-                System.out.println(pion.getX()+1 + ", "+ (pion.getY()+1));
-                System.out.println(plateau[pion.getX()+1][pion.getY()+1]);
-                System.out.println("aab");
+            if (plateau[pion.getX()+1][pion.getY()+1] != 1) {
                 return false;
             }
-            plateau[pion.getY()+1][pion.getX()+1] = plateau[pion.getY()][pion.getX()];
-            plateau[pion.getY()][pion.getX()] = 1;
+            plateau[pion.getX()+1][pion.getY()+1] = plateau[pion.getX()][pion.getY()];
+            plateau[pion.getX()][pion.getY()] = 1;
 
             pion.setX(pion.getX()+1);
             pion.setY(pion.getY()+1);
@@ -238,20 +240,19 @@ public class MethodeJeu {
         }
         else {
             if (!dansTerrain(pion.getY() + 1, pion.getX() - 1)) {
-                System.out.println("ok");
                 return false;
             }
 
-            else if (plateau[pion.getY() + 1][pion.getX() - 1] != 1) {
+            else if (plateau[pion.getX() + 1][pion.getY() - 1] != 1) {
                 System.out.println("aaa");
                 return false;
             }
             else {
-                plateau[pion.getY() + 1][pion.getX() - 1] = plateau[pion.getY()][pion.getX()];
-                plateau[pion.getY()][pion.getX()] = 1;
+                plateau[pion.getX() + 1][pion.getY() - 1] = plateau[pion.getX()][pion.getY()];
+                plateau[pion.getX()][pion.getY()] = 1;
 
                 pion.setX(pion.getX() + 1);
-                pion.setY(pion.getY() + 1);
+                pion.setY(pion.getY() - 1);
 
                 return true;
             }
