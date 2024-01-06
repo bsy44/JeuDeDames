@@ -1,7 +1,6 @@
 package jeuDeDamesContenu;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,7 +32,12 @@ public class MethodeJeu {
         afficherTab(rafraichissementTableau(plateauInt, damier));
         mangerPionN(pionBlancSelectionner(), true, plateauInt);
         afficherTab(rafraichissementTableau(plateauInt, damier));
-
+        mangerPionB(pionNoirSelectionner(), false, plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+        deplacerPionB(pionBlancSelectionner(), true, plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+        mangerPionB(pionNoirSelectionner(), false, plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
     }
 
     public static int premierJoueur() {
