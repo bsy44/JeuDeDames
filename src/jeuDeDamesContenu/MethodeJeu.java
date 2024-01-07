@@ -42,6 +42,11 @@ public class MethodeJeu {
         deplacerDame(pionNoirSelectionner(),5,0,plateauInt);
         afficherTab(rafraichissementTableau(plateauInt, damier));
 
+        deplacerPionB(pionBlancSelectionner(), false, plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+        deplacerDame(pionNoirSelectionner(),2,5,plateauInt);
+        afficherTab(rafraichissementTableau(plateauInt, damier));
+
     }
 
     public static int premierJoueur() {
@@ -365,33 +370,48 @@ public class MethodeJeu {
 
         return false;
     }
+
     public static boolean deplacerDame(Pion pion, int xArrivee, int yArrivee, int[][] plateau) {
-        int differenceX,differenxceY,  deltaX, deltaY, x, y;
-        differenceX = xArrivee - pion.getX();
-        differenxceY = yArrivee - pion.getY();
 
-        // Vérification du déplacement en diagonale
-        if (Math.abs(differenceX) == Math.abs(differenxceY)) {
-            deltaX = (differenceX > 0) ? 1 : -1;
-            deltaY = (differenxceY > 0) ? 1 : -1;
+        int differenceX = xArrivee - pion.getX();
+        int differenceY = yArrivee - pion.getY();
 
-            x = pion.getX() + deltaX;
-            y = pion.getY() + deltaY;
+        if (Math.abs(differenceX) == Math.abs(differenceY)) {
+            int deltaX = differenceX > 0 ? 1 : -1;
+            int deltaY = differenceY > 0 ? 1 : -1;
+
+            int x = pion.getX() + deltaX;
+            int y = pion.getY() + deltaY;
 
             while (x != xArrivee && y != yArrivee) {
+
+                if (plateau[x][y] != 1 && plateau[x][y] != pion.getCouleurPion()) {
+                    // Vérifier s'il y a un autre pion juste après celui mangé
+                    int ApresMangerX = x + deltaX;
+                    int apresMangerY = y + deltaY;
+                    if (plateau[ApresMangerX][apresMangerY] != 1 || !dansTerrain(ApresMangerX,apresMangerY)) {
+                        System.out.println("ne peut pas etre mangé");
+                        return false;
+                    }
+
+                    plateau[x][y] = plateau[pion.getX()][pion.getY()];
+
+                    plateau[pion.getX()][pion.getY()] = 1;
+
+                    pion.setX(xArrivee);
+                    pion.setY(yArrivee);
+                    return true;
+                }
                 x += deltaX;
                 y += deltaY;
-                if (plateau[x][y] != 1) {
-                    System.out.println("obstacle");
-                    return false;
-                }
-
             }
-            plateau[x][y] = plateau[pion.getX()][pion.getY()];
+
+            // Déplacement sans capture
+            plateau[xArrivee][yArrivee] = plateau[pion.getX()][pion.getY()];
             plateau[pion.getX()][pion.getY()] = 1;
 
-            pion.setX(x);
-            pion.setY(y);
+            pion.setX(xArrivee);
+            pion.setY(yArrivee);
             return true;
         }
 

@@ -46,10 +46,10 @@ public class Pion {
         return estDame;
     }
     public boolean estSurRangéeOpposée() {
-        if (this.couleurPion == 1 && this.getY() == 0) {
+        if (this.couleurPion == 3 && this.getY() == 0) {
             this.estDame=true;
             return true;
-        } else if (this.couleurPion == 0 && this.getY() == 9) {
+        } else if (this.couleurPion == 2 && this.getY() == 9) {
             this.estDame=true;
             return true;
         } else {
