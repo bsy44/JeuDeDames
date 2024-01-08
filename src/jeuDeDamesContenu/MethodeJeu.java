@@ -39,12 +39,9 @@ public class MethodeJeu {
         mangerPionB(pionNoirSelectionner(), false, plateauInt);
         afficherTab(rafraichissementTableau(plateauInt, damier));
         */
-        deplacerDame(pionNoirSelectionner(),5,0,plateauInt);
+        deplacerPionN(pionNoirSelectionner(),true, plateauInt);
         afficherTab(rafraichissementTableau(plateauInt, damier));
-
-        deplacerPionB(pionBlancSelectionner(), false, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        deplacerDame(pionNoirSelectionner(),2,5,plateauInt);
+        deplacerDame(pionBlancSelectionner(),6,3,plateauInt);
         afficherTab(rafraichissementTableau(plateauInt, damier));
 
     }
@@ -384,6 +381,10 @@ public class MethodeJeu {
             int y = pion.getY() + deltaY;
 
             while (x != xArrivee && y != yArrivee) {
+                if ( plateau[x][y] == pion.getCouleurPion()){
+                    System.out.println("Un pion allié est sur le chemin");
+                    return false;
+                }
 
                 if (plateau[x][y] != 1 && plateau[x][y] != pion.getCouleurPion()) {
                     // Vérifier s'il y a un autre pion juste après celui mangé
@@ -393,8 +394,25 @@ public class MethodeJeu {
                         System.out.println("ne peut pas etre mangé");
                         return false;
                     }
-
-                    plateau[x][y] = plateau[pion.getX()][pion.getY()];
+                    if (pion.getCouleurPion()==3) {
+                        for (Pion p : listePionBlanc) {
+                            if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
+                                listePionBlanc.remove(p);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (Pion p : listePionNoir) {
+                            if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
+                                listePionNoir.remove(p);
+                                break;
+                            }
+                        }
+                    }
+                    plateau[x][y]=1;
+                    plateau[x+deltaX][y + deltaY] = plateau[pion.getX()][pion.getY()];
 
                     plateau[pion.getX()][pion.getY()] = 1;
 
