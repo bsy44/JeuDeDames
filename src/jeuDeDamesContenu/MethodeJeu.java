@@ -147,12 +147,10 @@ public class MethodeJeu {
         if (droite) {
             System.out.println(pion.getX());
             if (!dansTerrain(pion.getX() - 1, pion.getY() + 1)) {
-                System.out.println("ok");
+                System.out.println("sortie de terrain");
                 return false;
             } else if (plateau[pion.getX() - 1][pion.getY() + 1] != 1) {
-                System.out.println(pion.getX() - 1 + ", " + (pion.getY() + 1));
-                System.out.println(plateau[pion.getY() - 1][pion.getX() + 1]);
-                System.out.println("aab");
+                System.out.println("case inaccessible");
                 return false;
             } else {
                 plateau[pion.getX() - 1][pion.getY() + 1] = plateau[pion.getX()][pion.getY()];
@@ -165,10 +163,10 @@ public class MethodeJeu {
             }
         } else {
             if (!dansTerrain(pion.getX() - 1, pion.getY() - 1)) {
-                System.out.println("ok");
+                System.out.println("sortie de terrain");
                 return false;
             } else if (plateau[pion.getX() - 1][pion.getY() - 1] != 1) {
-                System.out.println("aaa");
+                System.out.println("case inaccessible");
                 return false;
             } else {
                 plateau[pion.getX() - 1][pion.getY() - 1] = plateau[pion.getX()][pion.getY()];
@@ -186,13 +184,13 @@ public class MethodeJeu {
         int taille = 10;
 
         if (droite) {
-            System.out.println("je suis la");
             if (!dansTerrain(pion.getY() + 1, pion.getX() + 1)) {
-                System.out.println("ok");
+                System.out.println("sortie de terrain");
                 return false;
             }
 
             if (plateau[pion.getX() + 1][pion.getY() + 1] != 1) {
+                System.out.println("case inaccessible");
                 return false;
             }
             plateau[pion.getX() + 1][pion.getY() + 1] = plateau[pion.getX()][pion.getY()];
@@ -204,10 +202,10 @@ public class MethodeJeu {
             return true;
         } else {
             if (!dansTerrain(pion.getY() + 1, pion.getX() - 1)) {
-                System.out.println("ok");
+                System.out.println("sortie de terrain");
                 return false;
             } else if (plateau[pion.getX() + 1][pion.getY() - 1] != 1) {
-                System.out.println("aaa");
+                System.out.println("case inaccessible");
                 return false;
             } else {
                 plateau[pion.getX() + 1][pion.getY() - 1] = plateau[pion.getX()][pion.getY()];
@@ -226,22 +224,17 @@ public class MethodeJeu {
 
         if (droite) {//manger a droite Fonctionne
             if (dansTerrain(pion.getY() + 2, pion.getX() + 2)) {
-                System.out.println("je suis la");
-                if (plateau[pion.getX() + 1][pion.getY() + 1] != 3) {
-                    System.out.println("tata");
+                if (plateau[pion.getX() + 1][pion.getY() + 1] != 3) {//ajouter dame noir
                     return false;
                 }
                 for (Pion p : listePionNoir) {
                     if (p.getX() == pion.getY() + 1 && p.getY() == pion.getX() + 1) {
-                        System.out.println("je suis mort");
                         listePionNoir.remove(p);
                         break;
                     }
                 }
 
                 if (plateau[pion.getX() + 2][pion.getY() + 2] == 1) {
-                    System.out.println(plateau[pion.getX() + 2][pion.getY() + 2]);
-                    System.out.println((pion.getX() + 2) + ", " + (pion.getY() + 2));
 
 
                     plateau[pion.getX() + 2][pion.getY() + 2] = plateau[pion.getX()][pion.getY()];
@@ -253,11 +246,11 @@ public class MethodeJeu {
             }
         } else {// manger à gauche Fonctionne à continuer les testes.
             if (!dansTerrain(pion.getY() - 2, pion.getX() + 2)) {
-                System.out.println("terrain");
+                System.out.println("sortie de terrain");
                 return false;
             }
-            if (plateau[pion.getX() + 1][pion.getY() - 1] != 3) {
-                System.out.println("!3");
+            if (plateau[pion.getX() + 1][pion.getY() - 1] != 3) {// ajouter dame noir
+                System.out.println("case inaccessible");
                 return false;
             }
             for (Pion p : listePionNoir) {
@@ -315,9 +308,6 @@ public class MethodeJeu {
                     }
                 }
 
-                System.out.println(plateau[pion.getX() - 1][pion.getY() - 1]);
-                System.out.println((pion.getX() - 1) + ", " + (pion.getY() - 1));
-
                 if (plateau[pion.getX() - 2][pion.getY() - 2] == 1) {
                     plateau[pion.getX() - 2][pion.getY() - 2] = plateau[pion.getX()][pion.getY()];
                     plateau[pion.getX() - 1][pion.getY() - 1] = 1;
@@ -353,7 +343,7 @@ public class MethodeJeu {
                     int ApresMangerX = x + deltaX;
                     int apresMangerY = y + deltaY;
                     if (plateau[ApresMangerX][apresMangerY] != 1 || !dansTerrain(ApresMangerX,apresMangerY)) {
-                        System.out.println("ne peut pas etre mangé");
+                        System.out.println("Il ne peut pas etre mangé");
                         return false;
                     }
                     if (pion.getCouleurPion()==3) {
