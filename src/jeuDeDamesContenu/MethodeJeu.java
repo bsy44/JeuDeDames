@@ -387,7 +387,6 @@ public class MethodeJeu {
                 }
 
                 if (plateau[x][y] != 1 && plateau[x][y] != pion.getCouleurPion()) {
-                    // Vérifier s'il y a un autre pion juste après celui mangé
                     int ApresMangerX = x + deltaX;
                     int apresMangerY = y + deltaY;
                     if (plateau[ApresMangerX][apresMangerY] != 1 || !dansTerrain(ApresMangerX,apresMangerY)) {
@@ -424,7 +423,6 @@ public class MethodeJeu {
                 y += deltaY;
             }
 
-            // Déplacement sans capture
             plateau[xArrivee][yArrivee] = plateau[pion.getX()][pion.getY()];
             plateau[pion.getX()][pion.getY()] = 1;
 
