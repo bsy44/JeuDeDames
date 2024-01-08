@@ -9,43 +9,6 @@ public class MethodeJeu {
     final static List<Pion> listePionBlanc = new ArrayList<>(20);
     final static List<Pion> listePionNoir = new ArrayList<>(20);
 
-    public static void main(String[] args) {
-        int[][] plateauInt = Plateau.plateauPion();
-        String[][] damier = Plateau.creerDamier(plateauInt);
-        afficherTab(damier);
-
-        System.out.println("\n");
-//
-//        deplacerPionB(pionBlancSelectionner(plateauInt),true,plateauInt);
-//        afficherTab(rafraichissementTableau(plateauInt, damier));
-//
-//        System.out.println("\n");
-//
-//        deplacerPionB(pionBlancSelectionner(plateauInt), false, plateauInt);
-//        afficherTab(rafraichissementTableau(plateauInt, damier));
-//
-//        System.out.println("\n");
-/*
-        deplacerPionN(pionNoirSelectionner(), true, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        deplacerPionN(pionNoirSelectionner(), true, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        mangerPionN(pionBlancSelectionner(), true, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        mangerPionB(pionNoirSelectionner(), false, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        deplacerPionB(pionBlancSelectionner(), true, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        mangerPionB(pionNoirSelectionner(), false, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        */
-        deplacerPionN(pionNoirSelectionner(),true, plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-        deplacerDame(pionBlancSelectionner(),6,3,plateauInt);
-        afficherTab(rafraichissementTableau(plateauInt, damier));
-
-    }
-
     public static int premierJoueur() {
         int premierJ = 0;
         double aleatoire = (int) Math.random();
