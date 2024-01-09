@@ -41,8 +41,6 @@ public class Plateau {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < tabPionEntier.length; j++) {
                 if (tabPionEntier[i][j] == 2) {
-//                    Pion pionBlanc = new Pion(i, j, 2);
-//                    MethodeJeu.ajouterPionB(pionBlanc);
                     damier[i][j] = "⛂";
                 }
             }
@@ -51,8 +49,6 @@ public class Plateau {
         for (int i = 9; i > 5; i--) {
             for (int j = 0; j < tabPionEntier.length; j++) {
                 if (tabPionEntier[i][j] == 3) {
-//                    Pion pionNoir = new Pion(i, j, 3);
-//                    MethodeJeu.ajouterPionN(pionNoir);
                     damier[i][j] = "⛀";
                 }
             }
