@@ -280,7 +280,7 @@ public class MethodeJeu {
     public static boolean mangerPionN(Pion pion, boolean droite, int[][] plateau) {
         int taille = 10;
 
-        if (droite) {//manger a droite Fonctionne
+        if (droite) {//manger a droite un pion noir
             if (dansTerrain(pion.getY() + 2, pion.getX() + 2)) {
                 if (plateau[pion.getX() + 1][pion.getY() + 1] != 3) {//ajouter dame noir
                     return false;
@@ -299,12 +299,10 @@ public class MethodeJeu {
                     plateau[pion.getX() + 1][pion.getY() + 1] = 1;
                     plateau[pion.getX()][pion.getY()] = 1;
                     System.out.println("manger !");
-                    pion.setX(pion.getX()+2);
-                    pion.setY(pion.getY()+2);
                     return true;
                 }
             }
-        } else {// manger à gauche Fonctionne à continuer les testes.
+        } else {// manger à gauche un pion noir.
             if (!dansTerrain(pion.getY() - 2, pion.getX() + 2)) {
                 System.out.println("sortie de terrain");
                 return false;
@@ -336,7 +334,7 @@ public class MethodeJeu {
     public static boolean mangerPionB(Pion pion, boolean droite, int[][] plateau) {
         int taille = 10;
 
-        if (droite) {//manger a droite fonctionne
+        if (droite) {//manger a droite un pion blanc
             if (dansTerrain(pion.getX() + 2, pion.getY() - 2)) {
                 if (plateau[pion.getX() - 1][pion.getY() + 1] != 2) {
                     return false;
@@ -357,7 +355,7 @@ public class MethodeJeu {
                     return true;
                 }
             }
-        } else {// manger à gauche Fonctionne
+        } else {// manger à gauche un pion blanc
             if (dansTerrain(pion.getX() - 2, pion.getY() - 2)) {
                 if (plateau[pion.getX() - 1][pion.getY() - 1] != 2) {
                     return false;
@@ -412,16 +410,16 @@ public class MethodeJeu {
             int x = pion.getX() + deltaX;
             int y = pion.getY() + deltaY;
 
-            while (x != xArrivee && y != yArrivee) {
+            while (x != xArrivee && y != yArrivee) {//verifie si case arrivé est disponible
                 if ( plateau[x][y] == pion.getCouleurPion()){
                     System.out.println("Un pion allié est sur le chemin");
                     return false;
                 }
 
-                if (plateau[x][y] != 1 && plateau[x][y] != pion.getCouleurPion()) {
+                if (plateau[x][y] != 1 && plateau[x][y] != pion.getCouleurPion()) {//si la case est un pion adverse
                     int ApresMangerX = x + deltaX;
                     int apresMangerY = y + deltaY;
-                    if (plateau[ApresMangerX][apresMangerY] != 1 || !dansTerrain(ApresMangerX,apresMangerY)) {
+                    if (plateau[ApresMangerX][apresMangerY] != 1 || !dansTerrain(ApresMangerX,apresMangerY)) {//si la case d'apres est occupée
                         System.out.println("Il ne peut pas etre mangé");
                         return false;
                     }
