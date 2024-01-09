@@ -345,9 +345,6 @@ public class MethodeJeu {
                     }
                 }
 
-                System.out.println(plateau[pion.getX() - 1][pion.getY() - 1]);
-                System.out.println((pion.getX() - 1) + ", " + (pion.getY() - 1));
-
                 if (plateau[pion.getX() - 2][pion.getY() - 2] == 1) {
                     plateau[pion.getX() - 2][pion.getY() - 2] = plateau[pion.getX()][pion.getY()];
                     plateau[pion.getX() - 1][pion.getY() - 1] = 1;
@@ -362,11 +359,20 @@ public class MethodeJeu {
     }
     public static boolean deplacerOuMangerPionB(Pion pion, boolean droite, int[][] plateau) {
         if (mangerPionN(pion, droite, plateau)) {
-            return true; // Si le pion a pu manger, retourne true
+            return true;
         } else {
-            return deplacerPionB(pion, droite, plateau); // Si le pion n'a pas pu manger, effectue simplement le déplacement
+            return deplacerPionB(pion, droite, plateau);
         }
     }
+
+    public static boolean deplacerOuMangerPionN(Pion pion, boolean droite, int[][] plateau) {
+        if (mangerPionB(pion, droite, plateau)) {
+            return true;
+        } else {
+            return deplacerPionN(pion, droite, plateau);
+        }
+    }
+
 
 
     public static boolean deplacerDame(Pion pion, int xArrivee, int yArrivee, int[][] plateau) {
@@ -434,6 +440,16 @@ public class MethodeJeu {
 
         return false;
     }
-
+    public static boolean estSurRangéeOpposée(Pion pion) {
+        if (pion.getCouleurPion() == 3 && pion.getY() == 0) {
+            pion.setEstDame(true);
+            return true;
+        } else if (pion.getCouleurPion() == 2 && pion.getY() == 9) {
+            pion.setEstDame(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
