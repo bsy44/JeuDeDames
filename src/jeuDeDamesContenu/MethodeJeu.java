@@ -9,17 +9,6 @@ public class MethodeJeu {
     final static List<Pion> listePionBlanc = new ArrayList<>(20);
     final static List<Pion> listePionNoir = new ArrayList<>(20);
 
-    public static int premierJoueur() {
-        int premierJ = 0;
-        double aleatoire = (int) Math.random();
-
-        if (aleatoire < 0.5) {
-            premierJ = 1;
-        }
-
-        return premierJ;
-    }
-
     public static void afficherTab(String[][] tab) {
         String c = "ABCDEFGHIJ";
         System.out.print("\t" + "\t");
@@ -72,6 +61,14 @@ public class MethodeJeu {
         listePionNoir.remove(pion);
     }
 
+    public static List<Pion> getListePionBlanc() {
+        return listePionBlanc;
+    }
+
+    public static List<Pion> getListePionNoir() {
+        return listePionNoir;
+    }
+
     public static int selectionPionX() {
         Scanner scanner = new Scanner(System.in);
 
@@ -113,9 +110,7 @@ public class MethodeJeu {
         saisieY = selectionPionY();
 
         for (Pion p : listePionBlanc) {
-            System.out.println(saisieX + "" + saisieY + "  " + p.getY() + "" + "" + p.getX());
             if (saisieX == p.getY() && saisieY == p.getX()) {
-                System.out.println(p.getY() + ", " + p.getX());
                 return p;
             }
         }
@@ -134,7 +129,6 @@ public class MethodeJeu {
         System.out.println(saisieX + ", " + saisieY);
         for (Pion p : listePionNoir) {
             if (saisieX == p.getY() && saisieY == p.getX()) {
-                System.out.println(p.getX() + ", " + p.getY());
                 return p;
             }
         }
@@ -147,12 +141,10 @@ public class MethodeJeu {
         if (droite) {
             System.out.println(pion.getX());
             if (!dansTerrain(pion.getX() - 1, pion.getY() + 1)) {
-                System.out.println("ok");
                 return false;
             } else if (plateau[pion.getX() - 1][pion.getY() + 1] != 1) {
                 System.out.println(pion.getX() - 1 + ", " + (pion.getY() + 1));
                 System.out.println(plateau[pion.getY() - 1][pion.getX() + 1]);
-                System.out.println("aab");
                 return false;
             } else {
                 plateau[pion.getX() - 1][pion.getY() + 1] = plateau[pion.getX()][pion.getY()];
@@ -165,10 +157,8 @@ public class MethodeJeu {
             }
         } else {
             if (!dansTerrain(pion.getX() - 1, pion.getY() - 1)) {
-                System.out.println("ok");
                 return false;
             } else if (plateau[pion.getX() - 1][pion.getY() - 1] != 1) {
-                System.out.println("aaa");
                 return false;
             } else {
                 plateau[pion.getX() - 1][pion.getY() - 1] = plateau[pion.getX()][pion.getY()];
@@ -182,13 +172,24 @@ public class MethodeJeu {
         }
     }
 
+    public static boolean directionPion(){
+        Scanner scanner = new Scanner(System.in);
+        int saisieUtil;
+
+        System.out.println("Voulez vous vous déplacez votre pion à droite ? tapez 1 pour aller droite. Tapez sur une autre touche pour aller à gauche");
+        saisieUtil = scanner.nextInt();
+
+        if (saisieUtil == 1){
+            return true;
+        }
+        return false;
+    }
+
     public static boolean deplacerPionB(Pion pion, boolean droite, int[][] plateau) {
         int taille = 10;
 
         if (droite) {
-            System.out.println("je suis la");
             if (!dansTerrain(pion.getY() + 1, pion.getX() + 1)) {
-                System.out.println("ok");
                 return false;
             }
 
@@ -204,10 +205,8 @@ public class MethodeJeu {
             return true;
         } else {
             if (!dansTerrain(pion.getY() + 1, pion.getX() - 1)) {
-                System.out.println("ok");
                 return false;
             } else if (plateau[pion.getX() + 1][pion.getY() - 1] != 1) {
-                System.out.println("aaa");
                 return false;
             } else {
                 plateau[pion.getX() + 1][pion.getY() - 1] = plateau[pion.getX()][pion.getY()];
@@ -226,14 +225,11 @@ public class MethodeJeu {
 
         if (droite) {//manger a droite Fonctionne
             if (dansTerrain(pion.getY() + 2, pion.getX() + 2)) {
-                System.out.println("je suis la");
                 if (plateau[pion.getX() + 1][pion.getY() + 1] != 3) {
-                    System.out.println("tata");
                     return false;
                 }
                 for (Pion p : listePionNoir) {
                     if (p.getX() == pion.getY() + 1 && p.getY() == pion.getX() + 1) {
-                        System.out.println("je suis mort");
                         listePionNoir.remove(p);
                         break;
                     }
@@ -253,11 +249,9 @@ public class MethodeJeu {
             }
         } else {// manger à gauche Fonctionne à continuer les testes.
             if (!dansTerrain(pion.getY() - 2, pion.getX() + 2)) {
-                System.out.println("terrain");
                 return false;
             }
             if (plateau[pion.getX() + 1][pion.getY() - 1] != 3) {
-                System.out.println("!3");
                 return false;
             }
             for (Pion p : listePionNoir) {
@@ -327,7 +321,6 @@ public class MethodeJeu {
                 }
             }
         }
-
         return false;
     }
 
@@ -393,9 +386,6 @@ public class MethodeJeu {
             pion.setY(yArrivee);
             return true;
         }
-
         return false;
     }
-
-
 }
