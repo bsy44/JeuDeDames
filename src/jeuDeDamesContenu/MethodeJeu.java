@@ -171,8 +171,6 @@ public class MethodeJeu {
                 System.out.println("sortie de terrain");
                 return false;
             } else if (plateau[pion.getX() - 1][pion.getY() + 1] != 1) {
-                System.out.println(pion.getX() - 1 + ", " + (pion.getY() + 1));
-                System.out.println(plateau[pion.getY() - 1][pion.getX() + 1]);
                 System.out.println("case inaccessible");
                 return false;
             } else {
@@ -400,7 +398,7 @@ public class MethodeJeu {
                         System.out.println("Il ne peut pas etre mangé");
                         return false;
                     }
-                    if (pion.getCouleurPion()==3) {
+                    if (pion.getCouleurPion()==2) {
                         for (Pion p : listePionBlanc) {
                             if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
                                 supprimerPionB(p);
