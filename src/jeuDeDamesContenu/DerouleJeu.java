@@ -37,54 +37,6 @@ public class DerouleJeu {
 
         System.out.println();
 
-//        while ((!MethodeJeu.getListePionBlanc().isEmpty()) || (!MethodeJeu.getListePionNoir().isEmpty())){
-//            if (tour) {
-//                while (pionBouger == false){
-//                    System.out.println("C'est au tour de " + j1 + " de jouer\n");
-//
-//                    Pion pionBlancSelect = MethodeJeu.pionBlancSelectionner();
-//
-//                    if (pionBlancSelect.estDame()) {
-//                        plateauJeuEntier[pionBlancSelect.getX()][pionBlancSelect.getY()] = 4;
-//                        pionBouger = MethodeJeu.deplacerDame(pionBlancSelect, MethodeJeu.coordoneeDameX(), MethodeJeu.coordoneeDameY(), plateauJeuEntier);
-//                    }
-//                    else {
-//                        boolean direction = MethodeJeu.directionPion();
-//                        pionBouger = MethodeJeu.deplacerOuMangerPionB(pionBlancSelect, direction, plateauJeuEntier);
-//                        MethodeJeu.estSurRangéeOpposée(pionBlancSelect);
-//                    }
-//
-//                    MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
-//                }
-//                pionBouger = false;
-//                tour = false;
-//            }
-//
-//            else {
-//                System.out.println("\n");
-//
-//                while (pionBouger == false) {
-//                    System.out.println("C'est au tour de " + j2 + " de jouer\n");
-//
-//                    Pion pionNoirSelect = MethodeJeu.pionNoirSelectionner();
-//
-//                        if (pionNoirSelect.estDame()) {
-//                            plateauJeuEntier[pionNoirSelect.getX()][pionNoirSelect.getY()] = 5;
-//                            pionBouger = MethodeJeu.deplacerDame(pionNoirSelect, MethodeJeu.coordoneeDameX(), MethodeJeu.coordoneeDameY(), plateauJeuEntier);
-//
-//                        }
-//                        else {
-//                            boolean direction = MethodeJeu.directionPion();
-//                            pionBouger = MethodeJeu.deplacerOuMangerPionN(pionNoirSelect, direction, plateauJeuEntier);
-//                            MethodeJeu.estSurRangéeOpposée(pionNoirSelect);
-//                        }
-//                    MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
-//                }
-//                pionBouger = false;
-//                tour = true;
-//            }
-//        }
-
         while ((!MethodeJeu.getListePionBlanc().isEmpty()) || (!MethodeJeu.getListePionNoir().isEmpty())) {
             if (tour) {
                 System.out.println("C'est au tour de " + j1 + " de jouer\n");
@@ -99,7 +51,9 @@ public class DerouleJeu {
                         if (pionBlancSelect.estDame()) {
                             plateauJeuEntier[pionBlancSelect.getX()][pionBlancSelect.getY()] = 4;
                             pionBouger = MethodeJeu.deplacerDame(pionBlancSelect, MethodeJeu.coordoneeDameX(), MethodeJeu.coordoneeDameY(), plateauJeuEntier);
-                        } else {
+                        }
+
+                        else {
                             boolean direction = MethodeJeu.directionPion();
                             pionBouger = MethodeJeu.deplacerOuMangerPionB(pionBlancSelect, direction, plateauJeuEntier);
                             MethodeJeu.estSurRangéeOpposée(pionBlancSelect);
@@ -108,10 +62,10 @@ public class DerouleJeu {
                                 pionCapture = true;
                             }
                         }
-
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
-
-
+                        System.out.println("\n");
+                        System.out.println(MethodeJeu.getListePionBlanc().size());
+                        System.out.println(MethodeJeu.getListePionNoir().size());
                         if (!pionBouger || !pionCapture) {
                             manger = false;
                         } else {
@@ -147,6 +101,9 @@ public class DerouleJeu {
                         }
 
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
+                        System.out.println("\n");
+                        System.out.println(MethodeJeu.getListePionBlanc().size());
+                        System.out.println(MethodeJeu.getListePionNoir().size());
 
                         if (!pionBouger || !pionCapture) {
                             manger = false;

@@ -178,7 +178,6 @@ public class MethodeJeu {
         saisieX = scanner.nextInt() - 1;
         saisieY = selectionPionY();
 
-        System.out.println(saisieX + ", " + saisieY);
         for (Pion p : listePionNoir) {
             if (saisieX == p.getY() && saisieY == p.getX()) {
                 return p;
@@ -243,8 +242,7 @@ public class MethodeJeu {
         int taille = 10;
 
         if (droite) {
-            System.out.println("je suis la");
-            if (!dansTerrain(pion.getY() + 1, pion.getX() + 1)) {
+            if (!dansTerrain(pion.getX() + 1, pion.getY() + 1)) {
                 System.out.println("sortie de terrain");
                 return false;
             }
@@ -261,7 +259,7 @@ public class MethodeJeu {
 
             return true;
         } else {
-            if (!dansTerrain(pion.getY() + 1, pion.getX() - 1)) {
+            if (!dansTerrain(pion.getX() + 1, pion.getY() - 1)) {
                 System.out.println("sortie de terrain");
                 return false;
             } else if (plateau[pion.getX() + 1][pion.getY() - 1] != 1) {
@@ -301,6 +299,8 @@ public class MethodeJeu {
                     plateau[pion.getX() + 1][pion.getY() + 1] = 1;
                     plateau[pion.getX()][pion.getY()] = 1;
                     System.out.println("manger !");
+                    pion.setX(pion.getX()+2);
+                    pion.setY(pion.getY()+2);
                     return true;
                 }
             }
@@ -309,8 +309,7 @@ public class MethodeJeu {
                 System.out.println("sortie de terrain");
                 return false;
             }
-            if (plateau[pion.getX() + 1][pion.getY() - 1] != 3) {// ajouter dame noir
-                System.out.println("case inaccessible");
+            if (plateau[pion.getX() + 1][pion.getY() - 1] != 3) {
                 return false;
             }
             for (Pion p : listePionNoir) {
@@ -324,6 +323,8 @@ public class MethodeJeu {
                 plateau[pion.getX() + 1][pion.getY() - 1] = 1;
                 plateau[pion.getX()][pion.getY()] = 1;
                 System.out.println("manger !");
+                pion.setX(pion.getX()+2);
+                pion.setY(pion.getY()-2);
                 return true;
             }
         }
@@ -338,7 +339,6 @@ public class MethodeJeu {
         if (droite) {//manger a droite fonctionne
             if (dansTerrain(pion.getX() + 2, pion.getY() - 2)) {
                 if (plateau[pion.getX() - 1][pion.getY() + 1] != 2) {
-                    System.out.println("mp la");
                     return false;
                 }
                 for (Pion p : listePionBlanc) {
@@ -347,13 +347,13 @@ public class MethodeJeu {
                         break;
                     }
                 }
-                System.out.println("la la");
                 if (plateau[pion.getX() - 2][pion.getY() + 2] == 1) {
-                    System.out.println("coucou");
                     plateau[pion.getX() - 2][pion.getY() + 2] = plateau[pion.getX()][pion.getY()];
                     plateau[pion.getX() - 1][pion.getY() + 1] = 1;
                     plateau[pion.getX()][pion.getY()] = 1;
                     System.out.println("manger !");
+                    pion.setX(pion.getX()-2);
+                    pion.setY(pion.getY()+2);
                     return true;
                 }
             }
@@ -374,6 +374,8 @@ public class MethodeJeu {
                     plateau[pion.getX() - 1][pion.getY() - 1] = 1;
                     plateau[pion.getX()][pion.getY()] = 1;
                     System.out.println("manger !");
+                    pion.setX(pion.getX()-2);
+                    pion.setY(pion.getY()-2);
                     return true;
                 }
             }
@@ -397,8 +399,6 @@ public class MethodeJeu {
             return deplacerPionN(pion, droite, plateau); // Si le pion n'a pas pu manger, effectue simplement le déplacement
         }
     }
-
-
 
     public static boolean deplacerDame(Pion pion, int xArrivee, int yArrivee, int[][] plateau) {
 
@@ -465,6 +465,7 @@ public class MethodeJeu {
 
         return false;
     }
+
     public static boolean estSurRangéeOpposée(Pion pion) {
         if (pion.getCouleurPion() == 3 && pion.getY() == 0) {
             pion.setEstDame(true);
