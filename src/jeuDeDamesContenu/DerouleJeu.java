@@ -4,11 +4,17 @@ import java.util.Scanner;
 
 public class DerouleJeu {
 
+    public static void main(String[] args) {
+        gameloop();
+    }
+
     public static void gameloop() {
         Scanner scanner = new Scanner(System.in);
 
         String j1, j2;
         boolean tour = true;
+        int saisieUtil;
+        boolean reponse;
         int[][] plateauJeuEntier = Plateau.plateauPion();
         String[][] plateauJeu = Plateau.creerDamier(plateauJeuEntier);
 
@@ -31,12 +37,48 @@ public class DerouleJeu {
         while ((!MethodeJeu.getListePionBlanc().isEmpty()) || (!MethodeJeu.getListePionNoir().isEmpty())){
             if (tour) {
                 System.out.println("C'est au tour de " + j1 + " de jouer\n");
-                MethodeJeu.deplacerPionB(MethodeJeu.pionBlancSelectionner(),MethodeJeu.directionPion(), plateauJeuEntier);
+                Pion pionBlancSelect = MethodeJeu.pionBlancSelectionner();
+
+                if (pionBlancSelect.estDame()){
+                    MethodeJeu.deplacerDame(pionBlancSelect, MethodeJeu.coordoneeDameX(), MethodeJeu.coordoneeDameY(), plateauJeuEntier);
+                }
+                else {
+                    boolean direction = MethodeJeu.directionPion();
+
+                    System.out.println("Voulez-vous mangez un pion ? Tapez 0 pour oui. Un autre chiffre pour non");
+                    saisieUtil = scanner.nextInt();
+
+                    if (saisieUtil == 0){
+                        MethodeJeu.mangerPionN(pionBlancSelect, direction, plateauJeuEntier);
+                    }
+                    else {
+                        MethodeJeu.deplacerPionB(pionBlancSelect,direction,plateauJeuEntier);
+                    }
+                }
                 MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
                 tour = false;
 
             } else {
                 System.out.println("C'est au tour de " + j2 + " de jouer");
+
+                Pion pionNoirSelect = MethodeJeu.pionNoirSelectionner();
+
+                if (pionNoirSelect.estDame()){
+                    MethodeJeu.deplacerDame(pionNoirSelect, MethodeJeu.coordoneeDameX(), MethodeJeu.coordoneeDameY(), plateauJeuEntier);
+                }
+                else {
+                    boolean direction = MethodeJeu.directionPion();
+
+                    System.out.println("Voulez-vous mangez un pion ? Tapez 0 pour oui. Un autre chiffre pour non");
+                    saisieUtil = scanner.nextInt();
+
+                    if (saisieUtil == 0){
+                        MethodeJeu.mangerPionN(pionNoirSelect, direction, plateauJeuEntier);
+                    }
+                    else {
+                        MethodeJeu.deplacerPionB(pionNoirSelect,direction,plateauJeuEntier);
+                    }
+                }
                 MethodeJeu.deplacerPionB(MethodeJeu.pionBlancSelectionner(),MethodeJeu.directionPion(), plateauJeuEntier);
                 MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
                 tour = true;
