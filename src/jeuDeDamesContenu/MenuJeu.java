@@ -25,39 +25,15 @@ public class MenuJeu {
                                     "\n \t- un des 2 joueurs n'a plus de pion." +
                                     "\n \t- un joueur se trouve dans l’impossibilité de jouer alors qu’il a le trait." +
                                     "\n \t- abandonne la partie" +
-                                    "\n\nBonne Partie ^^");
-                break;
+                                    "\n\nBonne Partie ^^ \n");
 
             case 2 :
-                DerouleJeu.debutPartie();
+                DerouleJeu.gameloop();
                 break;
 
             case 3 :
                 System.out.println("Au revoir");
                 break;
-        }
-    }
-
-    public static void menuDeplacement(){
-        Scanner scanner = new Scanner(System.in);
-
-        int menu;
-        int selectionPion;
-
-        System.out.println("Selectionner le pion que vous souhaitez selectionner");
-        selectionPion = scanner.nextInt();
-
-        System.out.println("1. Avancer votre pion à droite");
-        System.out.println("2. Avancer votre pion à gauche");
-        menu = scanner.nextInt();
-
-        switch (menu){
-            case 1 :
-                break;
-
-            case 2 :
-                break;
-
         }
     }
 }
