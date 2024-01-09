@@ -69,7 +69,7 @@ public class MethodeJeu {
         return listePionNoir;
     }
 
-    public static int selectionPionX() {
+    public static int coordoneeDame() {
         Scanner scanner = new Scanner(System.in);
 
         int saisieX;
@@ -86,6 +86,33 @@ public class MethodeJeu {
         int i;
 
         System.out.println("Entrer la lettre de la case du pion que vous voulez déplacer");
+        saisieY = scanner.nextLine();
+
+        for (i = 0; i < c.length(); i++) {
+            if (saisieY.equals(String.valueOf(c.charAt(i)))) {
+                return (i); // Retourne l'indice si la lettre est trouvée
+            }
+        }
+        return -1; // Retourne -1 si la lettre n'est pas trouvée
+    }
+
+    public static int coordoneeDameX() {
+        Scanner scanner = new Scanner(System.in);
+
+        int saisieX;
+        System.out.println("Entrer le chiffre de la case ou vous voulez déplacer votre Dame");
+        saisieX = scanner.nextInt();
+
+        return saisieX;
+    }
+
+    public static int coordoneeDameY() {
+        Scanner scanner = new Scanner(System.in);
+        String c = "ABCDEFGHIJ";
+        String saisieY;
+        int i;
+
+        System.out.println("Entrer la lettre de la case ou vous voulez déplacer votre Dame");
         saisieY = scanner.nextLine();
 
         for (i = 0; i < c.length(); i++) {
@@ -230,7 +257,7 @@ public class MethodeJeu {
                 }
                 for (Pion p : listePionNoir) {
                     if (p.getX() == pion.getY() + 1 && p.getY() == pion.getX() + 1) {
-                        listePionNoir.remove(p);
+                        supprimerPionN(p);
                         break;
                     }
                 }
@@ -256,7 +283,7 @@ public class MethodeJeu {
             }
             for (Pion p : listePionNoir) {
                 if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() + 1) {
-                    listePionNoir.remove(p);
+                    supprimerPionN(p);
                     break;
                 }
             }
@@ -283,7 +310,7 @@ public class MethodeJeu {
                 }
                 for (Pion p : listePionBlanc) {
                     if (p.getX() == pion.getX() + 1 && p.getY() == pion.getY() - 1) {
-                        listePionBlanc.remove(p);
+                        supprimerPionB(p);
                         break;
                     }
                 }
@@ -304,7 +331,7 @@ public class MethodeJeu {
                 }
                 for (Pion p : listePionBlanc) {
                     if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
-                        listePionBlanc.remove(p);
+                        supprimerPionB(p);
                         break;
                     }
                 }
@@ -352,7 +379,7 @@ public class MethodeJeu {
                     if (pion.getCouleurPion()==3) {
                         for (Pion p : listePionBlanc) {
                             if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
-                                listePionBlanc.remove(p);
+                                supprimerPionB(p);
                                 break;
                             }
                         }
@@ -361,7 +388,7 @@ public class MethodeJeu {
                     {
                         for (Pion p : listePionNoir) {
                             if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
-                                listePionNoir.remove(p);
+                                supprimerPionN(p);
                                 break;
                             }
                         }
