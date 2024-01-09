@@ -320,6 +320,14 @@ public class MethodeJeu {
 
         return false;
     }
+    public static boolean deplacerOuMangerPionB(Pion pion, boolean droite, int[][] plateau) {
+        if (mangerPionN(pion, droite, plateau)) {
+            return true; // Si le pion a pu manger, retourne true
+        } else {
+            return deplacerPionB(pion, droite, plateau); // Si le pion n'a pas pu manger, effectue simplement le déplacement
+        }
+    }
+
 
     public static boolean deplacerDame(Pion pion, int xArrivee, int yArrivee, int[][] plateau) {
 
