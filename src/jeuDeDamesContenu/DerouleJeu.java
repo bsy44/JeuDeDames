@@ -35,7 +35,7 @@ public class DerouleJeu {
 
         while ((!MethodeJeu.getListePionBlanc().isEmpty()) || (!MethodeJeu.getListePionNoir().isEmpty())) {
             if (tour) {
-                System.out.println("C'est au tour de " + j1 + " de jouer\n");
+                System.out.println("\nC'est au tour de " + j1 + " de jouer\n");
 
                 while (!MethodeJeu.getListePionBlanc().isEmpty() && !pionBouger) {
                     Pion pionBlancSelect = MethodeJeu.pionBlancSelectionner();
@@ -65,16 +65,19 @@ public class DerouleJeu {
                             }
                         }
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
-                        System.out.println("\n");
-                        System.out.println("Il reste : " + MethodeJeu.getListePionBlanc().size() + " pion blanc");
-                        System.out.println("Il reste : " + MethodeJeu.getListePionNoir().size() + " pion noir");
 
                         if (!pionBouger || !pionCapture) {
                             manger = false;
                         } else {
+                            System.out.println();
                             System.out.println("Vous pouvez rejouer !");
                             pionCapture = false;
                         }
+
+                        System.out.println("\n");
+
+                        System.out.println("Il reste : " + MethodeJeu.getListePionBlanc().size() + " pion blanc");
+                        System.out.println("Il reste : " + MethodeJeu.getListePionNoir().size() + " pion noir");
                     }
                     manger = true;
                 }

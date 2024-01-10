@@ -229,7 +229,7 @@ public class MethodeJeu {
         Scanner scanner = new Scanner(System.in);
         int saisieUtil;
 
-        System.out.println("Voulez vous vous déplacez votre pion à droite ? tapez 1 pour aller droite. Tapez sur une autre touche pour aller à gauche");
+        System.out.println("Tapez 1 pour aller droite. Tapez sur une autre touche pour aller à gauche");
         saisieUtil = scanner.nextInt();
 
         if (saisieUtil == 1){
@@ -286,8 +286,6 @@ public class MethodeJeu {
                     return false;
                 }
                 for (Pion p : listePionNoir) {
-                    System.out.println("p " + p.getX() + ", " + p.getY());
-                    System.out.println("pion " + pion.getX() + ", " + pion.getY());
                     if (p.getY() == pion.getY() + 1 && p.getY() == pion.getY() + 1) {
                         supprimerPionN(p);
                         break;
@@ -304,14 +302,13 @@ public class MethodeJeu {
             }
         } else {// manger à gauche un pion noir.
             if (!dansTerrain(pion.getY() - 2, pion.getX() + 2)) {
-                System.out.println("sortie de terrain");
                 return false;
             }
             if (plateau[pion.getX() + 1][pion.getY() - 1] != 3) {
                 return false;
             }
             for (Pion p : listePionNoir) {
-                if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() + 1) {
+                if (p.getX() == pion.getX() + 1 && p.getY() == pion.getY() - 1) {
                     supprimerPionN(p);
                     break;
                 }
@@ -361,7 +358,7 @@ public class MethodeJeu {
                     return false;
                 }
                 for (Pion p : listePionBlanc) {
-                    if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
+                    if (p.getY() == pion.getX() - 1 && p.getX() == pion.getY() - 1) {
                         supprimerPionB(p);
                         break;
                     }
@@ -475,5 +472,4 @@ public class MethodeJeu {
             return false;
         }
     }
-
 }
