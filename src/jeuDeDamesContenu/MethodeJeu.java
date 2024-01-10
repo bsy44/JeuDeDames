@@ -128,7 +128,7 @@ public class MethodeJeu {
         System.out.println("Entrer le chiffre de la case ou vous voulez déplacer votre Dame");
         saisieX = scanner.nextInt();
 
-        return saisieX;
+        return saisieX-1;
     }
 
     public static int coordoneeDameY() {
@@ -402,8 +402,8 @@ public class MethodeJeu {
 
     public static boolean deplacerDame(Pion pion, int xArrivee, int yArrivee, int[][] plateau) {
 
-        int differenceX = xArrivee - pion.getX();
-        int differenceY = yArrivee - pion.getY();
+        int differenceX = xArrivee - pion.getY();
+        int differenceY = yArrivee - pion.getX();
 
         if (Math.abs(differenceX) == Math.abs(differenceY)) {
             int deltaX = differenceX > 0 ? 1 : -1;
@@ -467,10 +467,10 @@ public class MethodeJeu {
     }
 
     public static boolean estSurRangéeOpposée(Pion pion) {
-        if (pion.getCouleurPion() == 3 && pion.getY() == 0) {
+        if (pion.getCouleurPion() == 3 && pion.getX() == 0) {
             pion.setEstDame(true);
             return true;
-        } else if (pion.getCouleurPion() == 2 && pion.getY() == 9) {
+        } else if (pion.getCouleurPion() == 2 && pion.getX() == 9) {
             pion.setEstDame(true);
             return true;
         } else {

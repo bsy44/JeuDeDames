@@ -4,10 +4,6 @@ import java.util.Scanner;
 
 public class DerouleJeu {
 
-    public static void main(String[] args) {
-        gameloop();
-    }
-
     public static void gameloop() {
         Scanner scanner = new Scanner(System.in);
 
@@ -43,20 +39,26 @@ public class DerouleJeu {
 
                 while (!MethodeJeu.getListePionBlanc().isEmpty() && !pionBouger) {
                     Pion pionBlancSelect = MethodeJeu.pionBlancSelectionner();
+                    while (pionBlancSelect == null){
+                        System.out.println("Erreur sur la saisie des coordonées");
+                        pionBlancSelect = MethodeJeu.pionBlancSelectionner();
+                    }
                     boolean pionCapture = false;
 
                     while (manger) {
                         int cptPionN = MethodeJeu.getListePionNoir().size();
 
                         if (pionBlancSelect.estDame()) {
-                            plateauJeuEntier[pionBlancSelect.getX()][pionBlancSelect.getY()] = 4;
                             pionBouger = MethodeJeu.deplacerDame(pionBlancSelect, MethodeJeu.coordoneeDameX(), MethodeJeu.coordoneeDameY(), plateauJeuEntier);
                         }
 
                         else {
                             boolean direction = MethodeJeu.directionPion();
                             pionBouger = MethodeJeu.deplacerOuMangerPionB(pionBlancSelect, direction, plateauJeuEntier);
-                            MethodeJeu.estSurRangéeOpposée(pionBlancSelect);
+
+                            if (MethodeJeu.estSurRangéeOpposée(pionBlancSelect)){
+                                plateauJeuEntier[pionBlancSelect.getX()][pionBlancSelect.getY()] = 4;
+                            }
 
                             if (cptPionN != MethodeJeu.getListePionNoir().size()) {
                                 pionCapture = true;
@@ -64,8 +66,9 @@ public class DerouleJeu {
                         }
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
                         System.out.println("\n");
-                        System.out.println(MethodeJeu.getListePionBlanc().size());
-                        System.out.println(MethodeJeu.getListePionNoir().size());
+                        System.out.println("Il reste : " + MethodeJeu.getListePionBlanc().size() + " pion blanc");
+                        System.out.println("Il reste : " + MethodeJeu.getListePionNoir().size() + " pion noir");
+
                         if (!pionBouger || !pionCapture) {
                             manger = false;
                         } else {
@@ -82,18 +85,26 @@ public class DerouleJeu {
 
                 while (!MethodeJeu.getListePionNoir().isEmpty() && !pionBouger) {
                     Pion pionNoirSelect = MethodeJeu.pionNoirSelectionner();
+                    while (pionNoirSelect == null){
+                        System.out.println("Erreur sur la saisie des coordonées");
+                        pionNoirSelect = MethodeJeu.pionNoirSelectionner();
+                    }
                     boolean pionCapture = false;
 
                     while (manger) {
                         int cptPionB = MethodeJeu.getListePionBlanc().size();
 
                         if (pionNoirSelect.estDame()) {
-                            plateauJeuEntier[pionNoirSelect.getX()][pionNoirSelect.getY()] = 4;
                             pionBouger = MethodeJeu.deplacerDame(pionNoirSelect, MethodeJeu.coordoneeDameX(), MethodeJeu.coordoneeDameY(), plateauJeuEntier);
-                        } else {
+                        }
+
+                        else {
                             boolean direction = MethodeJeu.directionPion();
                             pionBouger = MethodeJeu.deplacerOuMangerPionN(pionNoirSelect, direction, plateauJeuEntier);
-                            MethodeJeu.estSurRangéeOpposée(pionNoirSelect);
+
+                            if (MethodeJeu.estSurRangéeOpposée(pionNoirSelect)){
+                                plateauJeuEntier[pionNoirSelect.getX()][pionNoirSelect.getY()] = 5;
+                            }
 
                             if (cptPionB != MethodeJeu.getListePionBlanc().size()) {
                                 pionCapture = true;
@@ -102,8 +113,8 @@ public class DerouleJeu {
 
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
                         System.out.println("\n");
-                        System.out.println(MethodeJeu.getListePionBlanc().size());
-                        System.out.println(MethodeJeu.getListePionNoir().size());
+                        System.out.println("Il reste : " + MethodeJeu.getListePionBlanc().size() + " pion blanc");
+                        System.out.println("Il reste : " + MethodeJeu.getListePionNoir().size() + " pion noir");
 
                         if (!pionBouger || !pionCapture) {
                             manger = false;

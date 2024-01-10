@@ -77,6 +77,9 @@ public class Plateau {
                     tabPion[i][j] = 2;
                     Pion pionBlanc = new Pion(i, j, 2);
                     MethodeJeu.ajouterPionB(pionBlanc);
+                    if (MethodeJeu.estSurRangéeOpposée(pionBlanc)){
+                        tabPion[i][j] = 4;
+                    }
                 }
             }
         }
@@ -87,6 +90,9 @@ public class Plateau {
                     tabPion[i][j] = 3;
                     Pion pionNoir = new Pion(i, j, 3);
                     MethodeJeu.ajouterPionN(pionNoir);
+                    if (MethodeJeu.estSurRangéeOpposée(pionNoir)){
+                        tabPion[i][j] = 5;
+                    }
                 }
             }
         }
