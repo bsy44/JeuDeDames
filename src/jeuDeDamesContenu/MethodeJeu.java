@@ -286,15 +286,15 @@ public class MethodeJeu {
                     return false;
                 }
                 for (Pion p : listePionNoir) {
-                    if (p.getX() == pion.getY() + 1 && p.getY() == pion.getX() + 1) {
+                    System.out.println("p " + p.getX() + ", " + p.getY());
+                    System.out.println("pion " + pion.getX() + ", " + pion.getY());
+                    if (p.getY() == pion.getY() + 1 && p.getY() == pion.getY() + 1) {
                         supprimerPionN(p);
                         break;
                     }
                 }
 
                 if (plateau[pion.getX() + 2][pion.getY() + 2] == 1) {
-
-
                     plateau[pion.getX() + 2][pion.getY() + 2] = plateau[pion.getX()][pion.getY()];
                     plateau[pion.getX() + 1][pion.getY() + 1] = 1;
                     plateau[pion.getX()][pion.getY()] = 1;
@@ -340,7 +340,7 @@ public class MethodeJeu {
                     return false;
                 }
                 for (Pion p : listePionBlanc) {
-                    if (p.getX() == pion.getX() + 1 && p.getY() == pion.getY() - 1) {
+                    if (p.getY() == pion.getX()+1 && p.getX() == pion.getY() - 1) {
                         supprimerPionB(p);
                         break;
                     }
