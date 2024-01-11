@@ -282,7 +282,7 @@ public class MethodeJeu {
 
         if (droite) {//manger a droite un pion noir
             if (dansTerrain(pion.getY() + 2, pion.getX() + 2)) {
-                if (plateau[pion.getX() + 1][pion.getY() + 1] != 3) {//ajouter dame noir
+                if (plateau[pion.getX() + 1][pion.getY() + 1] != 3 && plateau[pion.getX()+1][pion.getY()+1] != 5) {//ajouter dame noir
                     return false;
                 }
                 for (Pion p : listePionNoir) {
@@ -304,7 +304,7 @@ public class MethodeJeu {
             if (!dansTerrain(pion.getY() - 2, pion.getX() + 2)) {
                 return false;
             }
-            if (plateau[pion.getX() + 1][pion.getY() - 1] != 3) {
+            if (plateau[pion.getX() + 1][pion.getY() - 1] != 3 && plateau[pion.getX()+1][pion.getY()-1] != 5) {
                 return false;
             }
             for (Pion p : listePionNoir) {
@@ -333,7 +333,7 @@ public class MethodeJeu {
 
         if (droite) {//manger a droite un pion blanc
             if (dansTerrain(pion.getX() + 2, pion.getY() - 2)) {
-                if (plateau[pion.getX() - 1][pion.getY() + 1] != 2) {
+                if (plateau[pion.getX() - 1][pion.getY() + 1] != 2 && plateau[pion.getX()-1][pion.getY()+1] != 4) {
                     return false;
                 }
                 for (Pion p : listePionBlanc) {
@@ -354,11 +354,14 @@ public class MethodeJeu {
             }
         } else {// manger à gauche un pion blanc
             if (dansTerrain(pion.getX() - 2, pion.getY() - 2)) {
-                if (plateau[pion.getX() - 1][pion.getY() - 1] != 2) {
+                if (plateau[pion.getX() - 1][pion.getY() - 1] != 2 && plateau[pion.getX()-1][pion.getY()-1] != 4) {
                     return false;
                 }
                 for (Pion p : listePionBlanc) {
-                    if (p.getY() == pion.getX() - 1 && p.getX() == pion.getY() - 1) {
+                    System.out.println("p : "+ p.getX() +", " + p.getY());
+                    System.out.println("pion : "+ pion.getX() +", " + pion.getY());
+
+                    if (p.getY() == (pion.getX() - 1) && p.getX() == (pion.getY() - 1)) {
                         supprimerPionB(p);
                         break;
                     }
