@@ -65,7 +65,7 @@ public class DerouleJeu {
                             }
                         }
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
-                        MethodeJeu.afficherTabInt(plateauJeuEntier);
+
 
                         if (!pionBouger || !pionCapture) {
                             manger = false;
@@ -116,7 +116,7 @@ public class DerouleJeu {
                         }
 
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
-                        MethodeJeu.afficherTabInt(plateauJeuEntier);
+
                         System.out.println("\n");
                         System.out.println("Il reste : " + MethodeJeu.getListePionBlanc().size() + " pion blanc");
                         System.out.println("Il reste : " + MethodeJeu.getListePionNoir().size() + " pion noir");

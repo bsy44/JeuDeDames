@@ -358,9 +358,6 @@ public class MethodeJeu {
                     return false;
                 }
                 for (Pion p : listePionBlanc) {
-                    System.out.println("p : "+ p.getX() +", " + p.getY());
-                    System.out.println("pion : "+ pion.getX() +", " + pion.getY());
-
                     if (p.getY() == (pion.getX() - 1) && p.getX() == (pion.getY() - 1)) {
                         supprimerPionB(p);
                         break;
