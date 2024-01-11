@@ -39,10 +39,12 @@ public class DerouleJeu {
 
                 while (!MethodeJeu.getListePionBlanc().isEmpty() && !pionBouger) {
                     Pion pionBlancSelect = MethodeJeu.pionBlancSelectionner();
+
                     while (pionBlancSelect == null){
                         System.out.println("Erreur sur la saisie des coordonées");
                         pionBlancSelect = MethodeJeu.pionBlancSelectionner();
                     }
+
                     boolean pionCapture = false;
 
                     while (manger) {
@@ -65,7 +67,6 @@ public class DerouleJeu {
                             }
                         }
                         MethodeJeu.afficherTab(MethodeJeu.rafraichissementTableau(plateauJeuEntier, plateauJeu));
-
 
                         if (!pionBouger || !pionCapture) {
                             manger = false;
