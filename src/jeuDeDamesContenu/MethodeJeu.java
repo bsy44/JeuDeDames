@@ -425,7 +425,7 @@ public class MethodeJeu {
                     }
                     if (pion.getCouleurPion()==2) {
                         for (Pion p : listePionBlanc) {
-                            if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
+                            if (p.getX() == pion.getX() +deltaX && p.getY() == pion.getY() +deltaY) {
                                 supprimerPionB(p);
                                 break;
                             }
@@ -434,7 +434,7 @@ public class MethodeJeu {
                     else
                     {
                         for (Pion p : listePionNoir) {
-                            if (p.getX() == pion.getX() - 1 && p.getY() == pion.getY() - 1) {
+                            if (p.getX() == pion.getX() + deltaX && p.getY() == pion.getY() + deltaY) {
                                 supprimerPionN(p);
                                 break;
                             }
